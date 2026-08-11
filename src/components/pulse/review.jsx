@@ -22,11 +22,12 @@ import { PHOTOS, reviewFor } from './pulseData.js';
    through every step; only the right column switches (verbs → composer →
    celebration/sent) — no modal size-jumping between posts (Julia, Aug 10). */
 
+/* craft pass (Interface Craft, Aug 11): chips are words — the icons-off rule */
 export const QUICK_FIXES = [
-  { label: '✏️ Caption tweak', fill: 'Could the caption also mention …' },
-  { label: '🖼 Different cover frame', fill: 'Could the cover be a different frame — maybe …' },
-  { label: '✂️ Trim or reorder clips', fill: 'Could the clips be reordered so … opens?' },
-  { label: '🔤 Text on screen', fill: 'Could the on-screen text say … instead?' },
+  { label: 'Caption tweak', fill: 'Could the caption also mention …' },
+  { label: 'Different cover frame', fill: 'Could the cover be a different frame — maybe …' },
+  { label: 'Trim or reorder clips', fill: 'Could the clips be reordered so … opens?' },
+  { label: 'Text on screen', fill: 'Could the on-screen text say … instead?' },
 ];
 const EMBED = new URLSearchParams(window.location.search).has('embed');
 

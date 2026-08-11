@@ -33,6 +33,6 @@ Brand-portal prototype: captured production HTML + React overlays. v37 = Julia's
 - A tile row never shows a zero — it shows a sentence about what's happening.
 
 ## Dev + ship
-- Dev: launch.json name `brand-prototype-v42`, port 5220. Demo page: `/brand/tonypikora/campaigns/46` (campaign) and `/brand/tonypikora/campaigns` (brand overview).
+- Dev: launch.json name `brand-prototype-v43`, port 5221. Demo page: `/brand/tonypikora/campaigns/46` (campaign) and `/brand/tonypikora/campaigns` (brand overview).
 - Deploy: `bash scripts/ship.sh "commit message"` — builds, commits, pushes, watches the Pages run, curls the live URL.
-- Live: https://juliabenable.github.io/benable-brand-prototype-v42/
+- Live: https://juliabenable.github.io/benable-brand-prototype-v43/

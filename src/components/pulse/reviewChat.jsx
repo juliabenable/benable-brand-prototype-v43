@@ -55,7 +55,6 @@ export function ChatReview({ scene, rows, initial, onClose, onDecide }) {
   const reshootAsk = cmode === 'local' ? `${name} would need another visit` : 'she’d have to re-film from scratch';
   const kindsLine = assets.map((a) => a.kind).join(' + ');
 
-  const chipsFor = [...(target?.suggestions ?? []), ...QUICK_FIXES];
   const chipOn = (fill) => mode === 'change' && text.split('\n').includes(fill);
   const toggleChip = (fill) => {
     if (mode === 'accept') { setMode('change'); setText(fill); return; }
@@ -144,7 +143,11 @@ export function ChatReview({ scene, rows, initial, onClose, onDecide }) {
           <div className="rvc-composer">
             {assets.length > 1 && <p className="rvc-target">Replying about · <b>{target.kind}</b></p>}
             <div className="rv-chips rvc-chips">
-              {chipsFor.map((f) => (
+              {(target?.suggestions ?? []).map((f) => (
+                <button key={f.fill} type="button" className={`rv-chip${chipOn(f.fill) ? ' rv-chip--on' : ''}`} aria-pressed={chipOn(f.fill)} onClick={() => toggleChip(f.fill)}>{f.label}</button>
+              ))}
+              {(target?.suggestions ?? []).length > 0 && <span className="rvc-chipsep" aria-hidden />}
+              {QUICK_FIXES.map((f) => (
                 <button key={f.fill} type="button" className={`rv-chip${chipOn(f.fill) ? ' rv-chip--on' : ''}`} aria-pressed={chipOn(f.fill)} onClick={() => toggleChip(f.fill)}>{f.label}</button>
               ))}
             </div>
@@ -160,12 +163,14 @@ export function ChatReview({ scene, rows, initial, onClose, onDecide }) {
                 <button type="button" className="rvc-modeswitch" onClick={switchMode}>
                   {mode === 'accept' ? 'Ask for a change instead' : '← Back to approving'}
                 </button>
-                <p className="rvc-modenote">
-                  {mode === 'accept'
-                    ? 'Sending this approves the post — edit it to make it yours 💛'
-                    : `Her one change round · goes straight to her. Re-filming? ${reshootAsk ? 'That’s Katie’s team — ' : ''}`}
-                  {mode === 'change' && <button type="button" className="rv-katie" onClick={(e) => e.preventDefault()}>talk to them →</button>}
-                </p>
+                {mode === 'accept' ? (
+                  <p className="rvc-modenote">Sending this approves the post — edit it to make it yours 💛</p>
+                ) : (
+                  <p className="rvc-modenote">
+                    Her one change round · goes straight to her
+                    <span className="rvc-modenote-b">Need re-filming? {reshootAsk} — <button type="button" className="rv-katie" onClick={(e) => e.preventDefault()}>talk to Katie’s team →</button></span>
+                  </p>
+                )}
               </div>
               <button type="button" className="rv-send rvc-send" disabled={!text.trim()} onClick={send}>
                 {mode === 'accept' ? `Approve & send` : `Send to ${name}`}
