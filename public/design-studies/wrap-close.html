@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wrap close — sparkle + signature · design study</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #14111f; color: #fff; font-family: 'Inter', system-ui, sans-serif; min-height: 100vh; }
+    .page { max-width: 1300px; margin: 0 auto; padding: 36px 28px 80px; }
+    .back { display: inline-block; font-size: 13px; color: #b4adc8; text-decoration: none; margin-bottom: 22px; opacity: 0.7; }
+    .back:hover { opacity: 1; color: #fff; }
+    .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #b06a9a; margin-bottom: 8px; }
+    h1 { font-family: 'Fraunces', serif; font-weight: 600; font-size: 36px; letter-spacing: -0.015em; line-height: 1.05; margin: 0 0 10px; color: #fff; }
+    .lead { font-size: 15px; color: #b4adc8; max-width: 760px; line-height: 1.55; margin: 0 0 32px; }
+    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; }
+    @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+    .study { position: relative; border-radius: 22px; overflow: hidden; aspect-ratio: 4 / 3; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 50px 36px; box-shadow: 0 16px 44px rgba(0,0,0,0.36); }
+    .study__lbl { position: absolute; top: 14px; left: 16px; z-index: 20; display: inline-flex; align-items: center; gap: 8px; padding: 4px 12px 4px 4px; border-radius: 999px; background: rgba(255,255,255,0.12); backdrop-filter: blur(6px); font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.92); letter-spacing: 0.04em; }
+    .study__lbl .dot { width: 22px; height: 22px; border-radius: 50%; background: linear-gradient(135deg, #ff6fae, #a06bff); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-weight: 800; font-size: 12px; }
+    .study__lbl.lbl--ref .dot { background: rgba(255,255,255,0.3); }
+
+    /* Wrap-close uses the dark cover-style gradient */
+    .slide-bg { background: linear-gradient(135deg, #2a1e3f 0%, #1c1730 50%, #2e1735 100%); color: #fff; }
+    .s-eyebrow { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #ffd1ea; }
+    .h-close { font-family: 'Fraunces', serif; font-weight: 700; font-style: italic; font-size: clamp(64px, 9vw, 110px); line-height: 0.94; letter-spacing: -0.02em; margin: 6px 0; color: #fff; }
+    .h-close .accent { background: linear-gradient(120deg, #ff8fbf, #c89bff 70%); -webkit-background-clip: text; background-clip: text; color: transparent; display: inline-block; padding-bottom: 0.05em; }
+    .sub-close { font-family: 'Inter', sans-serif; font-size: 14px; color: rgba(255,255,255,0.7); max-width: 360px; margin: 8px 0 16px; }
+    .cta { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 999px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.22); color: rgba(255,255,255,0.92); font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; }
+
+    /* ───── Sparkles (PROPOSED only) ───── */
+    .sparkles { position: absolute; inset: 0; pointer-events: none; z-index: 5; }
+    .sparkle { position: absolute; transform-origin: center; }
+    .sparkle.s-star { fill: #ffd76a; filter: drop-shadow(0 0 8px rgba(255, 215, 106, 0.6)); }
+    .sparkle.s-heart { fill: #ff8fbf; filter: drop-shadow(0 0 8px rgba(255, 143, 191, 0.6)); }
+    .sparkle.s-dot { background: #c89bff; border-radius: 50%; box-shadow: 0 0 8px rgba(200, 155, 255, 0.7); }
+    @keyframes spkIn {
+      0% { opacity: 0; transform: translate(var(--tx, 0), 30px) scale(0.2) rotate(0deg); }
+      55% { opacity: 1; transform: translate(0, 0) scale(1.18) rotate(var(--rot, 20deg)); }
+      100% { opacity: 0.9; transform: translate(0, 0) scale(1) rotate(var(--rot, 20deg)); }
+    }
+    @keyframes spkFloat {
+      0%, 100% { transform: translate(0, 0) rotate(var(--rot, 20deg)); }
+      50% { transform: translate(0, -6px) rotate(calc(var(--rot, 20deg) + 4deg)); }
+    }
+    .study--proposed .sparkle {
+      animation: spkIn 0.9s cubic-bezier(.2,.85,.3,1.2) forwards,
+                 spkFloat 3.4s ease-in-out infinite 0.9s;
+      animation-delay: var(--delay, 0s), calc(var(--delay, 0s) + 0.9s);
+    }
+
+    /* Benable signature footer (PROPOSED only) */
+    .signature {
+      position: absolute; bottom: 16px; left: 0; right: 0;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px; font-weight: 600;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.04em;
+    }
+    .signature .b-mark {
+      width: 18px; height: 18px; border-radius: 5px;
+      background: linear-gradient(135deg, #ff6fae, #a06bff);
+      display: inline-flex; align-items: center; justify-content: center;
+      color: #fff; font-weight: 800; font-size: 11px;
+      box-shadow: 0 2px 6px rgba(160,107,255,0.4);
+    }
+    .signature .heart { color: #ff8fbf; }
+
+    .notes { margin-top: 36px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; }
+    @media (max-width: 900px) { .notes { grid-template-columns: 1fr; } }
+    .note h3 { font-family: 'Fraunces', serif; font-weight: 600; font-size: 17px; color: #fff; margin: 0 0 8px; }
+    .note p { font-size: 14px; line-height: 1.55; color: #a59aba; margin: 0 0 10px; }
+    .note ul { margin: 0; padding-left: 18px; }
+    .note li { font-size: 14px; line-height: 1.55; color: #a59aba; margin-bottom: 4px; }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <a class="back" href="./">← All design studies</a>
+    <div class="eyebrow">Slide 8 · Wrap close</div>
+    <h1>Sparkle enter + Benable signature</h1>
+    <p class="lead">The very last slide is currently quiet — almost businesslike. After 7 slides of celebration, give it one moment of payoff: a small sparkle/confetti burst on enter, and a soft Benable signature footer to close the loop.</p>
+
+    <div class="grid">
+      <!-- ─────── CURRENT ─────── -->
+      <div class="study slide-bg study--current">
+        <span class="study__lbl lbl--ref"><span class="dot">A</span>Current (live)</span>
+        <span class="s-eyebrow">28 Litsea</span>
+        <h2 class="h-close">That's a <span class="accent">wrap.</span></h2>
+        <p class="sub-close">Thank you for trusting us with your first campaign.</p>
+        <button class="cta">Have a question or feedback? Send a note to Katie →</button>
+      </div>
+
+      <!-- ─────── PROPOSED ─────── -->
+      <div class="study slide-bg study--proposed">
+        <span class="study__lbl"><span class="dot">B</span>Proposed · sparkle + signature</span>
+
+        <!-- Sparkles — fixed positions, animate in then float -->
+        <div class="sparkles">
+          <span class="sparkle s-dot" style="top:18%; left:14%; width:6px; height:6px; --delay:0.1s; --rot:0deg;"></span>
+          <span class="sparkle s-dot" style="top:24%; left:78%; width:8px; height:8px; --delay:0.18s; --rot:0deg;"></span>
+          <span class="sparkle s-dot" style="top:34%; left:9%; width:5px; height:5px; --delay:0.22s; --rot:0deg;"></span>
+          <span class="sparkle s-dot" style="top:62%; left:85%; width:6px; height:6px; --delay:0.32s; --rot:0deg;"></span>
+          <span class="sparkle s-dot" style="top:74%; left:18%; width:4px; height:4px; --delay:0.5s; --rot:0deg;"></span>
+          <svg class="sparkle s-star" viewBox="0 0 24 24" style="top:16%; left:22%; width:14px; height:14px; --delay:0.14s; --rot:14deg;"><path d="M12 2 L14.4 9.6 22 12 L14.4 14.4 12 22 L9.6 14.4 2 12 L9.6 9.6 Z"/></svg>
+          <svg class="sparkle s-star" viewBox="0 0 24 24" style="top:30%; left:84%; width:18px; height:18px; --delay:0.24s; --rot:-18deg;"><path d="M12 2 L14.4 9.6 22 12 L14.4 14.4 12 22 L9.6 14.4 2 12 L9.6 9.6 Z"/></svg>
+          <svg class="sparkle s-star" viewBox="0 0 24 24" style="top:68%; left:10%; width:12px; height:12px; --delay:0.4s; --rot:22deg;"><path d="M12 2 L14.4 9.6 22 12 L14.4 14.4 12 22 L9.6 14.4 2 12 L9.6 9.6 Z"/></svg>
+          <svg class="sparkle s-heart" viewBox="0 0 24 24" style="top:20%; left:50%; width:16px; height:16px; --delay:0.06s; --rot:-8deg;"><path d="M12 21s-7-4.5-9-9.5C1 6 5 3 8 4.5c2 1 3.5 3 4 4 .5-1 2-3 4-4 3-1.5 7 1.5 5 7-2 5-9 9.5-9 9.5z"/></svg>
+          <svg class="sparkle s-heart" viewBox="0 0 24 24" style="top:78%; left:55%; width:13px; height:13px; --delay:0.46s; --rot:12deg;"><path d="M12 21s-7-4.5-9-9.5C1 6 5 3 8 4.5c2 1 3.5 3 4 4 .5-1 2-3 4-4 3-1.5 7 1.5 5 7-2 5-9 9.5-9 9.5z"/></svg>
+          <svg class="sparkle s-star" viewBox="0 0 24 24" style="top:80%; left:88%; width:11px; height:11px; --delay:0.36s; --rot:30deg;"><path d="M12 2 L14.4 9.6 22 12 L14.4 14.4 12 22 L9.6 14.4 2 12 L9.6 9.6 Z"/></svg>
+        </div>
+
+        <span class="s-eyebrow">28 Litsea</span>
+        <h2 class="h-close">That's a <span class="accent">wrap.</span></h2>
+        <p class="sub-close">Thank you for trusting us with your first campaign.</p>
+        <button class="cta">Have a question or feedback? Send a note to Katie →</button>
+
+        <div class="signature">
+          <span class="b-mark">B</span>
+          <span>made with <span class="heart">♥</span> by Benable</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <div class="note">
+        <h3>What changes</h3>
+        <ul>
+          <li><strong>Sparkles on enter:</strong> 8–12 die-cut shapes (dots, stars, hearts) in pink/purple/gold positioned around the upper half of the slide. They scale + fade in on slide mount (staggered 0.05s delays, 0.9s curve), then gently float (3.4s loop, ±6px vertical bob).</li>
+          <li><strong>Sparkles glow:</strong> each gets a soft <code>drop-shadow</code> in its own color so they read as bright/festive against the dark gradient.</li>
+          <li><strong>Signature footer:</strong> small "made with ♥ by Benable" with a tiny gradient B-mark, bottom-center, soft-white at 50% opacity. Closes the loop without competing.</li>
+          <li><strong>Everything else unchanged:</strong> "That's a wrap." heading, subtitle, and the Send-Katie CTA stay exactly where they are.</li>
+        </ul>
+      </div>
+      <div class="note">
+        <h3>Why</h3>
+        <p>After seven slides of celebration the last beat shouldn't be quiet — it should be the payoff. The sparkles deliver a small visceral moment ("oh, nice") without being noisy or cartoonish.</p>
+        <p>The signature is the brand owning the moment — saying "this whole experience was Benable" at the very end. Tiny, classy, doesn't ask for attention but reminds the viewer who built this for them.</p>
+        <p>Reload this page to see the sparkles animate in (they only play on mount).</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

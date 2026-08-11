@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>v41 · every state — review gallery</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: Inter, ui-sans-serif, system-ui, sans-serif; background: #f4f2ef; color: #1a1a1a; font-size: 13px; line-height: 1.55; padding: 48px 24px 96px; }
+  .wrap { max-width: 1040px; margin: 0 auto; }
+  h1 { font-size: 20px; font-weight: 600; letter-spacing: -0.2px; }
+  .eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #17864f; margin-bottom: 10px; }
+  .intro { max-width: 660px; margin-top: 8px; color: #555; }
+  .toc { margin: 18px 0 0; display: flex; flex-wrap: wrap; gap: 6px; }
+  .toc a { font-size: 12px; font-weight: 600; color: #444; background: #fff; border: 1px solid rgba(26,26,26,0.1); border-radius: 999px; padding: 4px 11px; text-decoration: none; }
+  .toc a:hover { border-color: #b9b9b9; }
+  section { margin-top: 44px; }
+  .head { display: flex; align-items: baseline; gap: 10px; }
+  .num { color: #8a8a8a; font-weight: 600; }
+  h2 { font-size: 14px; font-weight: 600; }
+  .check { margin-top: 4px; color: #777; max-width: 760px; }
+  .frame { margin-top: 12px; width: 100%; height: 560px; overflow: hidden; border-radius: 14px; border: 1px solid rgba(26,26,26,0.09); background: #fff; box-shadow: 0 4px 14px rgba(0,0,0,0.04); position: relative; }
+  .frame iframe { width: 1390px; height: 940px; border: 0; transform: scale(0.727); transform-origin: 0 0; }
+  .frame--tall { height: 700px; }
+  .frame--tall iframe { height: 1180px; }
+  .note { margin-top: 40px; padding: 14px 18px; background: #fff; border: 1px solid rgba(26,26,26,0.09); border-radius: 12px; color: #555; max-width: 760px; }
+  .note b { color: #1a1a1a; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">v41 · states review</div>
+  <h1>Every state of the campaign page, live</h1>
+  <p class="intro">Each frame below is the real prototype (the locked v41 design — Grey header, ship-in-header, table K, solid ring), deep-linked to one state with the demo chrome hidden. It's live, not screenshots: rows expand, tooltips hover, buttons click. Scroll inside a frame to see the rail.</p>
+  <div class="toc">
+    <a href="#d1">D1 sourcing</a><a href="#d3">D3 review</a><a href="#d4">D4 invites</a><a href="#d9">D9 cooking</a><a href="#d10">D10 you ship</a><a href="#d11">D11 rematch</a><a href="#d16">D16 checks</a><a href="#d22">D22 live</a><a href="#d30">D30 wrap</a><a href="#l9">Local D9</a><a href="#l16">Local D16</a>
+  </div>
+
+  <section id="d1">
+    <div class="head"><span class="num">01</span><h2>Day 1 · Sourcing phase</h2></div>
+    <p class="check">Check: "Stay Tuned!" empty state, white pane, amber Recruiting pill in the captured header. No dashboard furniture yet.</p>
+    <div class="frame"><iframe loading="lazy" src="./brand/tonypikora/campaigns/46?embed=1&day=1&table=k"></iframe></div>
+  </section>
+
+  <section id="d3">
+    <div class="head"><span class="num">02</span><h2>Day 3 · Creators ready</h2></div>
+    <p class="check">Check: "We Found 6 creators" review state with the purple Review pill — cohort review never renders in the table.</p>
+    <div class="frame"><iframe loading="lazy" src="./brand/tonypikora/campaigns/46?embed=1&day=3&table=k"></iframe></div>
+  </section>
+
+  <section id="d4">
+    <div class="head"><span class="num">03</span><h2>Day 4 · Invites out</h2></div>
+    <p class="check">Check: header light "6 invited · 0 of 6 spots filled" + the ⓘ light tooltip (hover it) — the education has no other home. Rows all "Invited", quiet dashes in the action lane.</p>
+    <div class="frame"><iframe loading="lazy" src="./brand/tonypikora/campaigns/46?embed=1&day=4&table=k"></iframe></div>
+  </section>
+
+  <section id="d9">
+    <div class="head"><span class="num">04</span><h2>Day 9 · Cooking (the thesis day)</h2></div>
+    <p class="check">Check: green light "Nothing needs you", ramp dots per stage, hatchless grey empty slabs in the tracker, lone muted ✓ + "All 5 moved ahead" on Invited. Expand a row: 7-step history, tracker names, green now-dot, future steps say plans only.</p>
+    <div class="frame frame--tall"><iframe loading="lazy" src="./brand/tonypikora/campaigns/46?embed=1&day=9&table=k"></iframe></div>
+  </section>
+
+  <section id="d10">
+    <div class="head"><span class="num">05</span><h2>Day 10 · You ship (CSV)</h2></div>
+    <p class="check">Check: amber light "2 waiting on you", steps band ①②③ (download → the three steps keep their shape, step ① ticks, text black), amber dots on Accepted + inside "Ship and add tracking", modal asks "Have you shipped…?". Focus Sourcing in the tracker: the band hides.</p>
+    <div class="frame frame--tall"><iframe loading="lazy" src="./brand/tonypikora/campaigns/46?embed=1&day=10&table=k"></iframe></div>
+  </section>
+
+  <section id="d11">
+    <div class="head"><span class="num">06</span><h2>Day 11 · Rematch found</h2></div>
+    <p class="check">Check: blurred "New match found / To fill your campaign" row wearing the same grammar (amber dot "Match found" + ghost "Review matches"), sorted to top; the rail badge is the only orange on the bar.</p>
+    <div class="frame"><iframe loading="lazy" src="./brand/tonypikora/campaigns/46?embed=1&day=11&table=k"></iframe></div>
+  </section>
+
+  <section id="d16">
+    <div class="head"><span class="num">07</span><h2>Day 16 · First content</h2></div>
+    <p class="check">Check: reworked statuses — quality-checks language only ("Reel submitted — checking quality…"), knowable facts ("Films Saturday — confirmed with Katie's team", "Draft due Sunday").</p>
+    <div class="frame"><iframe loading="lazy" src="./brand/tonypikora/campaigns/46?embed=1&day=16&table=k"></iframe></div>
+  </section>
+
+  <section id="d22">
+    <div class="head"><span class="num">08</span><h2>Day 22 · Going live</h2></div>
+    <p class="check">Check: K header carries the moment ("Nia, Sofia and Jade went live 🎉") + face stack, no band; wide "♥ Say thanks" buttons with the pink pulsing heart on the dot axis; S of Say aligns with D of Draft; approved rows read "Approved — posting Thursday".</p>
+    <div class="frame frame--tall"><iframe loading="lazy" src="./brand/tonypikora/campaigns/46?embed=1&day=22&table=k"></iframe></div>
+  </section>
+
+  <section id="d30">
+    <div class="head"><span class="num">09</span><h2>Day 30 · Wrap</h2></div>
+    <p class="check">Check: celebratory gradient 100% "campaign complete! 🎉", green band + "🎁 See your wrap-up" CTA, solid green rings (flip RING variants in the full demo), plain "● Thanked" right column, "See her post ↗" riding with the middle text, tracker "6 ✨ · All done!".</p>
+    <div class="frame frame--tall"><iframe loading="lazy" src="./brand/tonypikora/campaigns/46?embed=1&day=30&table=k"></iframe></div>
+  </section>
+
+  <section id="l9">
+    <div class="head"><span class="num">10</span><h2>Local · Day 9 (Trilogy-style)</h2></div>
+    <p class="check">Check: Confirmed/Visited stages, "She emailed you" → amber "Confirm visit" (modal asks for the date), visit statuses ("Visiting tomorrow at 2pm"), zero shipping copy. Expand Maya: visit history — email → weekday visit → spa day.</p>
+    <div class="frame frame--tall"><iframe loading="lazy" src="./brand/tonypikora/campaigns/46?embed=1&day=9&mode=local&table=k"></iframe></div>
+  </section>
+
+  <section id="l16">
+    <div class="head"><span class="num">11</span><h2>Local · Day 16</h2></div>
+    <p class="check">Check: post-visit content phase in local voice — everyone's been in, quality checks running, no product language anywhere.</p>
+    <div class="frame"><iframe loading="lazy" src="./brand/tonypikora/campaigns/46?embed=1&day=16&mode=local&table=k"></iframe></div>
+  </section>
+
+
+  <p class="note"><b>How this works:</b> the app now accepts demo deep-links (<code>?day=9&amp;mode=local&amp;table=k&amp;head=white&amp;ship=head&amp;ring=badge</code>, plus <code>embed=1</code> to hide the demo pills) — default behavior unchanged. This page ships with the repo, so it stays current with every deploy: locally at <code>/benable-brand-prototype-v41/states.html</code> and on the live Pages URL.</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v17 — design studies</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,600&display=swap" rel="stylesheet">
+  <style>
+    html, body { margin: 0; padding: 0; background: #14111f; color: #fff; font-family: 'Inter', system-ui, sans-serif; min-height: 100vh; }
+    .page { max-width: 1100px; margin: 0 auto; padding: 56px 28px 80px; }
+    .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #b06a9a; margin-bottom: 10px; }
+    h1 { font-family: 'Fraunces', serif; font-weight: 600; font-size: 48px; letter-spacing: -0.02em; line-height: 1.05; margin: 0 0 14px; color: #fff; }
+    .lead { font-size: 16px; color: #b4adc8; max-width: 760px; line-height: 1.55; margin: 0; }
+    .list { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 44px; }
+    .item { display: flex; align-items: center; gap: 22px; padding: 22px 26px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; text-decoration: none; color: inherit; transition: transform 0.12s ease, background 0.15s ease, border-color 0.15s ease; }
+    .item:hover { transform: translateY(-2px); background: rgba(255,255,255,0.07); border-color: rgba(160,107,255,0.4); }
+    .item__no { flex: 0 0 auto; width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, #ff6fae, #a06bff); display: inline-flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px; color: #fff; }
+    .item__body { flex: 1; min-width: 0; }
+    .item__slide { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #c3a3e0; margin-bottom: 4px; }
+    .item__title { font-family: 'Fraunces', serif; font-weight: 600; font-size: 22px; letter-spacing: -0.01em; color: #fff; margin: 0 0 4px; }
+    .item__sub { font-size: 14px; color: #a59aba; margin: 0; }
+    .item__arrow { flex: 0 0 auto; color: rgba(255,255,255,0.4); font-size: 22px; }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="eyebrow">v17 · design studies</div>
+    <h1>Slide-by-slide design exploration</h1>
+    <p class="lead">Each study takes one slide of the wrap-up deck, shows what's currently live, and proposes a redesign side-by-side with notes on what changes and why. Nothing here is shipped yet — these are options for the next pass.</p>
+
+    <div class="list">
+      <a class="item" href="./cover.html">
+        <span class="item__no">1</span>
+        <div class="item__body">
+          <div class="item__slide">Cover · slide 1</div>
+          <h2 class="item__title">Five takes on the cover</h2>
+          <p class="item__sub">Same four pieces of text, five different layouts + type treatments — Editorial, Asymmetric, Type-as-Art, Masthead, plus the current.</p>
+        </div>
+        <span class="item__arrow">→</span>
+      </a>
+
+      <a class="item" href="./reach.html">
+        <span class="item__no">3</span>
+        <div class="item__body">
+          <div class="item__slide">Reach · slide 3</div>
+          <h2 class="item__title">Editorial-stack split layout</h2>
+          <p class="item__sub">Move the dotted heart to its own column and let the brand-awareness number be the hero on the left.</p>
+        </div>
+        <span class="item__arrow">→</span>
+      </a>
+
+      <a class="item" href="./engagement.html">
+        <span class="item__no">4</span>
+        <div class="item__body">
+          <div class="item__slide">Engagement · slide 4</div>
+          <h2 class="item__title">Collapse 7 elements → 4</h2>
+          <p class="item__sub">Drop the creator-faces row, surface one hero comment instead of three small ones, make the Benable-sourcing takeaway bolder.</p>
+        </div>
+        <span class="item__arrow">→</span>
+      </a>
+
+      <a class="item" href="./katie.html">
+        <span class="item__no">6</span>
+        <div class="item__body">
+          <div class="item__slide">Katie note · slide 6</div>
+          <h2 class="item__title">Postcard that feels like paper</h2>
+          <p class="item__sub">Restore the tilt, add a faint paper grain and a postmark stamp so it reads as an actual piece of paper, not a card on a screen.</p>
+        </div>
+        <span class="item__arrow">→</span>
+      </a>
+
+      <a class="item" href="./still-growing.html">
+        <span class="item__no">7</span>
+        <div class="item__body">
+          <div class="item__slide">Still-growing · slide 7</div>
+          <h2 class="item__title">Add a sparkline of views over time</h2>
+          <p class="item__sub">A small SVG chart between subtitle and quote, showing the growth tail extending to the right — visual proof of the message.</p>
+        </div>
+        <span class="item__arrow">→</span>
+      </a>
+
+      <a class="item" href="./wrap-close.html">
+        <span class="item__no">8</span>
+        <div class="item__body">
+          <div class="item__slide">Wrap close · slide 8</div>
+          <h2 class="item__title">Sparkle enter + Benable signature</h2>
+          <p class="item__sub">A small confetti/sparkle burst on slide mount and a Benable signature footer to close the loop.</p>
+        </div>
+        <span class="item__arrow">→</span>
+      </a>
+    </div>
+  </div>
+</body>
+</html>

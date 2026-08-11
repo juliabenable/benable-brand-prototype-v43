@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Katie note — paper feel · design study</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,600&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #14111f; color: #fff; font-family: 'Inter', system-ui, sans-serif; min-height: 100vh; }
+    .page { max-width: 1300px; margin: 0 auto; padding: 36px 28px 80px; }
+    .back { display: inline-block; font-size: 13px; color: #b4adc8; text-decoration: none; margin-bottom: 22px; opacity: 0.7; }
+    .back:hover { opacity: 1; color: #fff; }
+    .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #b06a9a; margin-bottom: 8px; }
+    h1 { font-family: 'Fraunces', serif; font-weight: 600; font-size: 36px; letter-spacing: -0.015em; line-height: 1.05; margin: 0 0 10px; color: #fff; }
+    .lead { font-size: 15px; color: #b4adc8; max-width: 760px; line-height: 1.55; margin: 0 0 32px; }
+    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; }
+    @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+    .study { position: relative; border-radius: 22px; overflow: hidden; aspect-ratio: 4 / 3; display: flex; align-items: center; justify-content: center; box-shadow: 0 16px 44px rgba(0,0,0,0.36); }
+    .study__lbl { position: absolute; top: 14px; left: 16px; z-index: 20; display: inline-flex; align-items: center; gap: 8px; padding: 4px 12px 4px 4px; border-radius: 999px; background: rgba(255,255,255,0.86); backdrop-filter: blur(6px); font-size: 11px; font-weight: 700; color: #2a2342; letter-spacing: 0.04em; }
+    .study__lbl .dot { width: 22px; height: 22px; border-radius: 50%; background: linear-gradient(135deg, #ff6fae, #a06bff); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-weight: 800; font-size: 12px; }
+    .study__lbl.lbl--ref .dot { background: rgba(80, 60, 110, 0.45); }
+    .s-eyebrow { position: absolute; top: 40px; left: 0; right: 0; text-align: center; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #b06a9a; }
+
+    /* Katie's actual slide gradient (grad a) */
+    .slide-bg { background: linear-gradient(135deg, #ffe9d6 0%, #ffe0ea 46%, #ece0fb 100%); color: #2a2342; }
+
+    /* ───── POSTCARD shared bits ───── */
+    .postcard { position: relative; width: 320px; background: #fffdf7; border-radius: 8px; padding: 22px 22px 18px; box-shadow: 0 18px 38px rgba(120,80,140,0.18); }
+    .postcard__tape { position: absolute; top: -10px; left: 50%; transform: translateX(-50%) rotate(-2deg); width: 84px; height: 20px; background: rgba(255,226,150,0.72); }
+    .postcard__msg { font-family: 'Kalam', cursive; font-size: 15px; line-height: 1.42; color: #3a3142; margin: 4px 0 14px; }
+    .postcard__sign { display: flex; align-items: center; gap: 9px; }
+    .postcard__av { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #ff7eb3, #a06bff); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; flex: 0 0 auto; }
+    .postcard__sign b { font-family: 'Kalam', cursive; font-weight: 700; font-size: 16px; color: #2a2342; display: block; line-height: 1.1; }
+    .postcard__sign small { font-size: 9px; color: #8a7fa0; }
+
+    /* ───── CURRENT (upright, flat paper) ───── */
+    .study--current .postcard { transform: rotate(0deg); }
+
+    /* ───── PROPOSED (tilted, paper grain, stamp) ───── */
+    .study--proposed .postcard {
+      transform: rotate(-1.2deg);
+      background:
+        radial-gradient(circle at 10% 0%, rgba(170,110,40,0.05), transparent 35%),
+        radial-gradient(circle at 90% 100%, rgba(170,110,40,0.05), transparent 35%),
+        repeating-linear-gradient(95deg, rgba(0,0,0,0.012) 0 2px, transparent 2px 4px),
+        repeating-linear-gradient(5deg, rgba(0,0,0,0.012) 0 3px, transparent 3px 6px),
+        #fffdf7;
+      box-shadow: 0 18px 38px rgba(120,80,140,0.22), inset 0 0 38px 4px rgba(0,0,0,0.045);
+    }
+    .study--proposed .postcard__tape {
+      transform: translateX(-50%) rotate(-3deg);
+      background: rgba(255,226,150,0.78);
+      box-shadow: 0 2px 3px rgba(0,0,0,0.06);
+    }
+    /* Postmark stamp top-right */
+    .study--proposed .postcard__stamp {
+      position: absolute; top: 12px; right: 12px;
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      border: 1.4px dashed rgba(184, 76, 76, 0.55);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      transform: rotate(8deg);
+      color: rgba(184, 76, 76, 0.62);
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 0.06em;
+      pointer-events: none;
+    }
+    .study--proposed .postcard__stamp b { font-size: 8px; font-weight: 800; letter-spacing: 0.18em; }
+    .study--proposed .postcard__stamp span { font-size: 7px; font-weight: 700; margin-top: 2px; }
+    .study--proposed .postcard__stamp::before {
+      content: ''; position: absolute; inset: 4px;
+      border-radius: 50%;
+      border: 1px solid rgba(184, 76, 76, 0.3);
+    }
+
+    .notes { margin-top: 36px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; }
+    @media (max-width: 900px) { .notes { grid-template-columns: 1fr; } }
+    .note h3 { font-family: 'Fraunces', serif; font-weight: 600; font-size: 17px; color: #fff; margin: 0 0 8px; }
+    .note p { font-size: 14px; line-height: 1.55; color: #a59aba; margin: 0 0 10px; }
+    .note ul { margin: 0; padding-left: 18px; }
+    .note li { font-size: 14px; line-height: 1.55; color: #a59aba; margin-bottom: 4px; }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <a class="back" href="./">← All design studies</a>
+    <div class="eyebrow">Slide 6 · Note from Katie</div>
+    <h1>Postcard that feels like paper</h1>
+    <p class="lead">The current postcard reads as <em>a card on a screen</em>. Restoring the tilt + adding a faint paper grain + a postmark stamp gets it closer to <em>an actual piece of paper</em>. Same content; same Kalam handwriting; just stops feeling generated.</p>
+
+    <div class="grid">
+      <!-- ─────── CURRENT ─────── -->
+      <div class="study slide-bg study--current">
+        <span class="study__lbl lbl--ref"><span class="dot">A</span>Current (live)</span>
+        <span class="s-eyebrow">A note from Katie</span>
+        <div class="postcard">
+          <span class="postcard__tape"></span>
+          <p class="postcard__msg">Hi 28 Litsea team — what a first campaign. Your creators were genuinely excited about your brand, which we don't always see. We'll keep tuning the experience as we get to know you better. Don't ever hesitate to reach out. ♥</p>
+          <div class="postcard__sign">
+            <span class="postcard__av">K</span>
+            <div><b>Katie</b><small>Head of Brand Partnerships · your personal concierge</small></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─────── PROPOSED ─────── -->
+      <div class="study slide-bg study--proposed">
+        <span class="study__lbl"><span class="dot">B</span>Proposed · paper feel</span>
+        <span class="s-eyebrow">A note from Katie</span>
+        <div class="postcard">
+          <span class="postcard__tape"></span>
+          <span class="postcard__stamp"><b>BENABLE</b><span>· DEC ·</span></span>
+          <p class="postcard__msg">Hi 28 Litsea team — what a first campaign. Your creators were genuinely excited about your brand, which we don't always see. We'll keep tuning the experience as we get to know you better. Don't ever hesitate to reach out. ♥</p>
+          <div class="postcard__sign">
+            <span class="postcard__av">K</span>
+            <div><b>Katie</b><small>Head of Brand Partnerships · your personal concierge</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <div class="note">
+        <h3>What changes</h3>
+        <ul>
+          <li><strong>Tilt:</strong> postcard rotated <code>-1.2deg</code>, tape rotated <code>-3deg</code>. Tiny but huge — it stops sitting flat against the slide.</li>
+          <li><strong>Paper grain:</strong> a layered repeating-gradient at very low opacity (≈1.2%) plus two corner darken-shadows. Reads as fibrous paper, not flat fill.</li>
+          <li><strong>Inset edge shadow:</strong> a soft inner shadow at the edges (<code>inset 0 0 38px 4px rgba(0,0,0,0.045)</code>) gives the postcard a subtle aged-paper depth.</li>
+          <li><strong>Postmark stamp:</strong> a small dashed circle top-right with "BENABLE · DEC ·", tilted ~8°, in a faded postal-red. Reads instantly as "this is a real card someone sent."</li>
+          <li><strong>Tape gets a tiny shadow:</strong> 2px down, blur 3, 6% alpha — sells that it's stuck on top of the paper, not painted on.</li>
+        </ul>
+      </div>
+      <div class="note">
+        <h3>Why</h3>
+        <p>The Kalam handwriting font is doing a lot of work to sell "handwritten note." But the surface it sits on undermines it — flat cream rectangle with a digital tape. The change is all in the paper, not the message.</p>
+        <p>Tilt + grain + stamp are the three smallest moves that make the biggest "this is paper, not pixels" gain. None require new copy, new font, or layout changes.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

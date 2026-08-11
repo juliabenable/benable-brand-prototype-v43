@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cover slide — design study</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,400;1,9..144,600;1,9..144,700;1,9..144,800&family=Instrument+Serif:ital@0;1&family=Caveat:wght@400;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      background: #14111f;
+      color: #fff;
+      font-family: 'Inter', system-ui, sans-serif;
+      min-height: 100vh;
+    }
+    .page {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 40px 28px 80px;
+    }
+    .page-head { margin-bottom: 36px; }
+    .page-eyebrow {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: #b06a9a; margin-bottom: 8px;
+    }
+    .page-title {
+      font-family: 'Fraunces', serif;
+      font-weight: 600; font-size: 32px;
+      letter-spacing: -0.01em; line-height: 1.1;
+      color: #fff; margin: 0 0 8px;
+    }
+    .page-sub {
+      font-size: 14px; color: #b4adc8; max-width: 720px;
+      line-height: 1.55; margin: 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+    @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } }
+
+    .study {
+      position: relative;
+      background: linear-gradient(135deg, #2a1e3f 0%, #1c1730 50%, #2e1735 100%);
+      border-radius: 24px;
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      display: flex;
+      box-shadow: 0 18px 50px rgba(0,0,0,0.4);
+    }
+    .study__label {
+      position: absolute;
+      top: 14px; left: 16px;
+      z-index: 10;
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(8px);
+      padding: 4px 10px 4px 6px;
+      border-radius: 999px;
+      font-size: 11px; font-weight: 600;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 0.04em;
+    }
+    .study__label .l {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: linear-gradient(135deg, #ff6fae, #a06bff);
+      color: #fff; display: inline-flex;
+      align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 800;
+    }
+    .study__name {
+      position: absolute; bottom: 14px; left: 16px;
+      z-index: 10;
+      font-size: 12px; color: rgba(255,255,255,0.55);
+      font-weight: 500;
+    }
+    .study__name b {
+      color: rgba(255,255,255,0.85); font-weight: 600;
+      margin-right: 6px;
+    }
+
+    /* Reusable bits */
+    .eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: #ffd1ea;
+    }
+    .accent-pop {
+      background: linear-gradient(90deg, #ff6fae, #a06bff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display: inline-block;
+      padding-bottom: 0.05em;
+    }
+
+    /* ───────────────────────────────────────────────
+       STUDY A · Editorial Magazine
+       Huge italic Fraunces, classic centered, Vogue-y
+       ─────────────────────────────────────────────── */
+    .study--a {
+      flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 60px 40px;
+    }
+    .study--a .eyebrow { margin-bottom: 18px; }
+    .study--a h1 {
+      font-family: 'Fraunces', serif;
+      font-weight: 700; font-style: italic;
+      font-size: clamp(40px, 5.8vw, 78px);
+      line-height: 0.96;
+      letter-spacing: -0.025em;
+      margin: 0;
+      color: #fff;
+    }
+    .study--a .sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px; font-weight: 400;
+      color: rgba(255,255,255,0.7);
+      margin-top: 22px; max-width: 360px;
+    }
+    .study--a .campaign {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic; font-size: 14px;
+      color: #c3a3e0; margin-top: 12px;
+      max-width: 340px;
+    }
+
+    /* ───────────────────────────────────────────────
+       STUDY B · Asymmetric / Modern Agency
+       Left-aligned heavy sans, vertical eyebrow,
+       sidebar campaign label
+       ─────────────────────────────────────────────── */
+    .study--b {
+      padding: 50px 40px 50px 80px;
+      align-items: center;
+    }
+    .study--b__bar {
+      position: absolute;
+      left: 28px; top: 50%;
+      transform: translateY(-50%) rotate(-180deg);
+      writing-mode: vertical-rl;
+      font-family: 'Inter', sans-serif;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: #b06a9a;
+    }
+    .study--b__body { max-width: 100%; }
+    .study--b h1 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 900;
+      font-size: clamp(36px, 5.4vw, 72px);
+      line-height: 0.94;
+      letter-spacing: -0.045em;
+      margin: 0;
+      color: #fff;
+    }
+    .study--b h1 .line2 {
+      display: block;
+      font-weight: 900; font-style: italic;
+      font-family: 'Fraunces', serif;
+    }
+    .study--b .sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px; font-weight: 500;
+      color: rgba(255,255,255,0.75);
+      margin-top: 22px;
+      padding-left: 14px;
+      border-left: 2px solid #a06bff;
+    }
+    .study--b .campaign {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px; font-weight: 600;
+      color: #c3a3e0; margin-top: 14px;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      padding-left: 14px;
+    }
+
+    /* ───────────────────────────────────────────────
+       STUDY C · Type as Art / Mixed Hierarchy
+       Different fonts per word — designer-y collage
+       ─────────────────────────────────────────────── */
+    .study--c {
+      flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 50px 36px;
+    }
+    .study--c .eyebrow { margin-bottom: 24px; }
+    .study--c h1 {
+      margin: 0;
+      line-height: 0.95;
+      color: #fff;
+    }
+    .study--c h1 .w1 {
+      display: inline-block;
+      font-family: 'Caveat', cursive;
+      font-weight: 600;
+      font-size: clamp(28px, 4vw, 42px);
+      color: #ffd1ea;
+      transform: translateY(0.1em);
+      margin-right: 4px;
+    }
+    .study--c h1 .w2 {
+      display: inline-block;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: clamp(28px, 4vw, 42px);
+      letter-spacing: -0.02em;
+    }
+    .study--c h1 .w3 {
+      display: block;
+      font-family: 'Fraunces', serif;
+      font-weight: 800; font-style: italic;
+      font-size: clamp(56px, 8.2vw, 110px);
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin: -0.05em 0;
+    }
+    .study--c h1 .w4 {
+      display: inline-block;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: clamp(28px, 4vw, 40px);
+      color: rgba(255,255,255,0.7);
+      margin-right: 8px;
+    }
+    .study--c h1 .w5 {
+      display: inline-block;
+      font-family: 'Fraunces', serif;
+      font-weight: 800; font-style: italic;
+      font-size: clamp(48px, 7vw, 96px);
+      letter-spacing: -0.03em;
+    }
+    .study--c .sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: rgba(255,255,255,0.7);
+      margin-top: 22px;
+    }
+    .study--c .campaign {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic; font-size: 14px;
+      color: #c3a3e0; margin-top: 8px;
+    }
+
+    /* ───────────────────────────────────────────────
+       STUDY D · Masthead / Editorial Cover
+       Top + bottom rules, masthead at top, big title
+       ─────────────────────────────────────────────── */
+    .study--d {
+      flex-direction: column;
+      padding: 0;
+    }
+    .study--d__mast {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.18);
+      font-family: 'Inter', sans-serif;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+    }
+    .study--d__mast .vol { color: rgba(255,255,255,0.4); }
+    .study--d__body {
+      flex: 1;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 30px 30px;
+    }
+    .study--d h1 {
+      font-family: 'DM Serif Display', 'Fraunces', serif;
+      font-weight: 400;
+      font-size: clamp(40px, 6.4vw, 84px);
+      line-height: 0.96;
+      letter-spacing: -0.02em;
+      margin: 0;
+      color: #fff;
+    }
+    .study--d h1 em {
+      font-style: italic; font-family: 'DM Serif Display', serif;
+      color: #ffd1ea;
+    }
+    .study--d__rule {
+      display: flex; align-items: center; gap: 12px;
+      margin: 18px 0 14px;
+      width: 60%;
+      color: rgba(255,255,255,0.4);
+    }
+    .study--d__rule::before, .study--d__rule::after {
+      content: ''; flex: 1; height: 1px;
+      background: rgba(255,255,255,0.25);
+    }
+    .study--d__rule span { font-size: 10px; letter-spacing: 0.3em; font-weight: 600; }
+    .study--d .sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px; color: rgba(255,255,255,0.75);
+      max-width: 360px;
+    }
+    .study--d__foot {
+      padding: 12px 24px;
+      border-top: 1px solid rgba(255,255,255,0.18);
+      font-family: 'Instrument Serif', serif;
+      font-style: italic; font-size: 13px;
+      color: #c3a3e0;
+      text-align: center;
+    }
+
+    /* ───────────────────────────────────────────────
+       CURRENT (reference)
+       ─────────────────────────────────────────────── */
+    .study--e {
+      flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 50px 36px;
+    }
+    .study--e .eyebrow { margin-bottom: 20px; }
+    .study--e h1 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 800;
+      font-size: clamp(36px, 5.5vw, 70px);
+      line-height: 0.98;
+      letter-spacing: -0.035em;
+      margin: 0;
+      color: #fff;
+    }
+    .study--e .sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: rgba(255,255,255,0.7);
+      margin-top: 18px;
+    }
+    .study--e .campaign {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic; font-size: 14px;
+      color: #c3a3e0;
+      margin-top: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="page-head">
+      <div class="page-eyebrow">v17 · design study</div>
+      <h1 class="page-title">Cover slide — five takes</h1>
+      <p class="page-sub">Same four pieces of text (eyebrow / headline / subtitle / campaign label) in five different arrangements + type treatments. <strong>Study E is what's currently live.</strong> Tell me which feels right — or describe a hybrid.</p>
+    </header>
+
+    <div class="grid">
+
+      <!-- ════════════════════════════════════════ STUDY A ═══════ -->
+      <div class="study study--a">
+        <span class="study__label"><span class="l">A</span> Editorial</span>
+        <span class="study__name"><b>Editorial</b>Vogue-style centered serif italic</span>
+
+        <span class="eyebrow">28 Litsea · Campaign complete</span>
+        <h1>Your campaign<br>report is <span class="accent-pop"><em>ready.</em></span></h1>
+        <p class="sub">Check out your results and highlights.</p>
+        <p class="campaign">Experience 28 Litsea's Award Winning Body Oil</p>
+      </div>
+
+      <!-- ════════════════════════════════════════ STUDY B ═══════ -->
+      <div class="study study--b">
+        <span class="study__label"><span class="l">B</span> Asymmetric</span>
+        <span class="study__name"><b>Asymmetric</b>Off-center, heavy sans + italic serif</span>
+
+        <span class="study--b__bar">28 Litsea — Campaign complete</span>
+        <div class="study--b__body">
+          <h1>Your campaign report<br><span class="line2 accent-pop">is ready.</span></h1>
+          <p class="sub">Check out your results and highlights.</p>
+          <p class="campaign">Experience 28 Litsea's Award Winning Body Oil</p>
+        </div>
+      </div>
+
+      <!-- ════════════════════════════════════════ STUDY C ═══════ -->
+      <div class="study study--c">
+        <span class="study__label"><span class="l">C</span> Type as Art</span>
+        <span class="study__name"><b>Type as Art</b>Mixed weight + serif/sans/script per word</span>
+
+        <span class="eyebrow">28 Litsea · Campaign complete</span>
+        <h1>
+          <span class="w1">Your</span><span class="w2">campaign</span>
+          <span class="w3 accent-pop">report</span>
+          <span class="w4">is</span><span class="w5">ready.</span>
+        </h1>
+        <p class="sub">Check out your results and highlights.</p>
+        <p class="campaign">Experience 28 Litsea's Award Winning Body Oil</p>
+      </div>
+
+      <!-- ════════════════════════════════════════ STUDY D ═══════ -->
+      <div class="study study--d">
+        <span class="study__label"><span class="l">D</span> Masthead</span>
+        <span class="study__name"><b>Masthead</b>Front-page newspaper, structured</span>
+
+        <div class="study--d__mast">
+          <span>28 Litsea</span>
+          <span class="vol">No. 01 · Campaign complete</span>
+        </div>
+        <div class="study--d__body">
+          <h1>Your campaign report <em>is&nbsp;ready.</em></h1>
+          <div class="study--d__rule"><span>★</span></div>
+          <p class="sub">Check out your results and highlights.</p>
+        </div>
+        <div class="study--d__foot">Experience 28 Litsea's Award Winning Body Oil</div>
+      </div>
+
+      <!-- ════════════════════════════════════════ STUDY E · CURRENT ═══════ -->
+      <div class="study study--e">
+        <span class="study__label"><span class="l" style="background:rgba(255,255,255,0.18)">E</span> Current (live)</span>
+        <span class="study__name"><b>Current</b>Inter Bold, centered, gradient accent</span>
+
+        <span class="eyebrow">28 Litsea · Campaign complete</span>
+        <h1>Your campaign report<br><span class="accent-pop">is ready.</span></h1>
+        <p class="sub">Check out your results and highlights.</p>
+        <p class="campaign">Experience 28 Litsea's Award Winning Body Oil</p>
+      </div>
+
+      <!-- ════════════════════════════════════════ STUDY F · DROP CAP ══════ -->
+      <div class="study study--f">
+        <span class="study__label"><span class="l">F</span> Drop-cap editorial</span>
+        <span class="study__name"><b>Drop-cap</b>Massive initial Y, body wraps around</span>
+
+        <span class="eyebrow">28 Litsea · Campaign complete</span>
+        <h1>
+          <span class="dc">Y</span><span class="rest">our campaign report is <em class="accent-pop">ready.</em></span>
+        </h1>
+        <p class="sub">Check out your results and highlights.</p>
+        <p class="campaign">Experience 28 Litsea's Award Winning Body Oil</p>
+      </div>
+
+      <!-- ════════════════════════════════════════ STUDY G · FEATURE STACK ══ -->
+      <div class="study study--g">
+        <span class="study__label"><span class="l">G</span> Feature stack</span>
+        <span class="study__name"><b>Feature stack</b>Title broken into 3 stacked beats, Fraunces mixed weights</span>
+
+        <span class="eyebrow">28 Litsea · Campaign complete</span>
+        <h1>
+          <span class="line1">Your campaign</span>
+          <span class="line2">report</span>
+          <span class="line3 accent-pop">is ready.</span>
+        </h1>
+        <p class="sub">Check out your results and highlights.</p>
+        <p class="campaign">Experience 28 Litsea's Award Winning Body Oil</p>
+      </div>
+
+      <!-- ════════════════════════════════════════ STUDY H · DECORATED ═════ -->
+      <div class="study study--h">
+        <span class="study__label"><span class="l">H</span> Decorated frontispiece</span>
+        <span class="study__name"><b>Decorated</b>Centered Fraunces with ornaments — book frontispiece</span>
+
+        <span class="orn-rule top"><span>·</span></span>
+        <span class="eyebrow">28 Litsea · Campaign complete</span>
+        <h1>Your campaign <em class="accent-pop">report</em><br>is ready</h1>
+        <span class="orn-rule"><span>★</span></span>
+        <p class="sub">Check out your results and highlights.</p>
+        <p class="campaign">Experience 28 Litsea's Award Winning Body Oil</p>
+      </div>
+
+    </div>
+  </div>
+
+  <style>
+    /* ── F: Drop-cap editorial ── */
+    .study--f { flex-direction: column; align-items: flex-start; text-align: left; padding: 56px 50px 50px; gap: 14px; }
+    .study--f .eyebrow { margin-bottom: 6px; }
+    .study--f h1 { display: flex; align-items: baseline; gap: 6px; margin: 0; max-width: 100%; }
+    .study--f .dc { font-family: 'Fraunces', serif; font-weight: 800; font-style: italic; font-size: clamp(110px, 18vw, 220px); line-height: 0.86; letter-spacing: -0.05em; color: #fff; flex: 0 0 auto; }
+    .study--f .rest { font-family: 'Fraunces', serif; font-weight: 500; font-style: italic; font-size: clamp(28px, 4vw, 44px); line-height: 1.06; color: #fff; letter-spacing: -0.015em; padding-bottom: 0.12em; }
+    .study--f .sub { font-family: 'Inter', sans-serif; font-size: 14px; color: rgba(255,255,255,0.7); max-width: 90%; }
+    .study--f .campaign { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 14px; color: #c3a3e0; }
+
+    /* ── G: Feature stack ── */
+    .study--g { flex-direction: column; align-items: flex-start; text-align: left; padding: 50px; gap: 12px; }
+    .study--g .eyebrow { margin-bottom: 4px; }
+    .study--g h1 { display: flex; flex-direction: column; margin: 0; line-height: 0.95; color: #fff; }
+    .study--g h1 .line1 { font-family: 'Fraunces', serif; font-weight: 400; font-style: italic; font-size: clamp(28px, 3.6vw, 40px); color: rgba(255,255,255,0.7); letter-spacing: -0.01em; }
+    .study--g h1 .line2 { font-family: 'Fraunces', serif; font-weight: 700; font-size: clamp(64px, 9vw, 110px); letter-spacing: -0.03em; line-height: 0.92; margin: -0.04em 0; padding-bottom: 0.04em; }
+    .study--g h1 .line3 { font-family: 'Fraunces', serif; font-weight: 800; font-style: italic; font-size: clamp(46px, 7vw, 86px); letter-spacing: -0.025em; padding-bottom: 0.08em; }
+    .study--g .sub { font-family: 'Inter', sans-serif; font-size: 14px; color: rgba(255,255,255,0.75); margin-top: 8px; max-width: 90%; }
+    .study--g .campaign { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 14px; color: #c3a3e0; }
+
+    /* ── H: Decorated frontispiece ── */
+    .study--h { flex-direction: column; align-items: center; text-align: center; padding: 36px 40px; gap: 8px; }
+    .study--h h1 { font-family: 'Fraunces', serif; font-weight: 600; font-size: clamp(40px, 6vw, 72px); line-height: 1.0; letter-spacing: -0.015em; color: #fff; margin: 4px 0; }
+    .study--h h1 em { font-style: italic; font-weight: 700; }
+    .study--h .orn-rule { display: flex; align-items: center; gap: 14px; width: 60%; color: rgba(255,255,255,0.5); margin: 6px 0; }
+    .study--h .orn-rule.top { margin-top: 6px; }
+    .study--h .orn-rule::before, .study--h .orn-rule::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.28); }
+    .study--h .orn-rule span { font-family: 'Fraunces', serif; font-size: 14px; color: rgba(255,255,255,0.6); }
+    .study--h .sub { font-family: 'Inter', sans-serif; font-size: 13px; color: rgba(255,255,255,0.7); max-width: 320px; }
+    .study--h .campaign { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 13px; color: #c3a3e0; margin-top: 6px; max-width: 320px; }
+  </style>
+</body>
+</html>

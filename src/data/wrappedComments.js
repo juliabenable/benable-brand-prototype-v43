@@ -1,0 +1,56 @@
+/* Real comments from the first campaign (28 Litsea body oil/serum).
+   p = platform ('tt' = TikTok, 'ig' = Instagram). cr = creator the comment is on. */
+export const WRAPPED_COMMENTS = [
+  { t: 'Your skin looks so smooth and glowy!!✨😍 I need to try @28litsea 😍😍', u: 'alondraambrizm', p: 'tt', cr: 'Samantha' },
+  { t: 'Your skin looks so smooth and glowy!!! Need to try it out 😍 @28litsea', u: '_.carmeennn', p: 'tt', cr: 'Samantha' },
+  { t: 'The glow is so pretty your skin looks so healthy 😍 @28litsea', u: 'iilsevv', p: 'tt', cr: 'Samantha' },
+  { t: 'The body oil glow is so good 😍', u: 'kris10koci', p: 'tt', cr: 'Lulu Lavender' },
+  { t: 'Body oil looks amazing that glow', u: 'housewifehaymoor', p: 'tt', cr: 'Lulu Lavender' },
+  { t: 'Wow that glow and instant hydration on your back is so good!', u: 'angiely.goodman', p: 'tt', cr: 'Samantha' },
+  { t: 'I need this!! You’re glowing 🤩🤩', u: '_briannamamax3', p: 'tt', cr: 'Samantha' },
+  { t: 'Obsessed with anything almond scent!💓', u: 'jeanrubyy', p: 'tt', cr: 'Samantha' },
+  { t: 'that glow from the body oil is insane', u: 'mollymmcqueen', p: 'tt', cr: 'Lulu Lavender' },
+  { t: 'The body oil is giving glow show!', u: '11lisamariet', p: 'tt', cr: 'Lulu Lavender' },
+  { t: 'Ooooh need to try that looks so glowy and hydrating', u: 'justdomeiry', p: 'tt', cr: 'Samantha' },
+  { t: 'This looks amazing! I need to try @28litsea 😍', u: 'brendastephani_', p: 'tt', cr: 'Samantha' },
+  { t: 'I love the Glow it gave your skin wow 😍', u: 'justtbiancaaa', p: 'tt', cr: 'Samantha' },
+  { t: 'Omggg okay. This is the second time I’ve heard of a body serum this week. I need!! Girl.. Not a greased up rotisserie chicken 😂', u: 'rachelninteriano', p: 'tt', cr: 'Samantha' },
+  { t: 'Omgsh you are glowing! Need this!', u: 'lyindalynn', p: 'tt', cr: 'Samantha' },
+  { t: 'The glow that it instant instantly gave you is so nice! @28litsea', u: 'lizbettehdzz', p: 'tt', cr: 'Samantha' },
+  { t: 'The body oil glow is insane 😍', u: 'christinebbbroker', p: 'tt', cr: 'Lulu Lavender' },
+  { t: 'Looks silky smooth', u: 'betts.r', p: 'tt', cr: 'Samantha' },
+  { t: 'Thank you for sharing these products 🤍🤍 I definitely try 🥰', u: 'mariiapr.content', p: 'ig', cr: 'Marina/Luckymia' },
+  { t: '✨I wish I could smell it!! It looks amazing!', u: 'clairethebear11', p: 'tt', cr: 'Lulu Lavender' },
+  { t: 'Love a good glow body oil 😍 @28litsea', u: 'ojitosybesitos', p: 'tt', cr: 'Samantha' },
+  { t: 'It looks so hydrating and smooth', u: 'bellathequeen98', p: 'tt', cr: 'Samantha' },
+  { t: 'Cute packaging and that glow 🤌', u: 'thattwinmomrn', p: 'tt', cr: 'Lulu Lavender' },
+  { t: 'Oh that glowwww 😍😍 i wanna try!!', u: 'facebyjas', p: 'tt', cr: 'Samantha' },
+  { t: 'Sounds like a great product 😍', u: 'm.viktorivna_', p: 'ig', cr: 'Marina/Luckymia' },
+  { t: 'Wow😍 I need😍', u: 'mmarifor', p: 'ig', cr: 'Marina/Luckymia' },
+  { t: 'Loving that glow ✨💕', u: 'kayfordayss', p: 'tt', cr: 'Samantha' },
+  { t: 'Ooou that looks so glowy & soothing 😍😍', u: 'sylviaaaaac', p: 'tt', cr: 'Samantha' },
+  { t: 'Oh wow! I need to try this', u: 'stephriveraxo', p: 'tt', cr: 'Samantha' },
+  { t: 'It looks so hydrating 😍', u: 'seraybee_', p: 'tt', cr: 'Samantha' },
+  { t: 'The glow is soo good 😍💕', u: 'maddymhebert', p: 'tt', cr: 'Samantha' },
+  { t: 'Almond scent??? Omg yes pls!!', u: 'brittnirosalie', p: 'tt', cr: 'Samantha' },
+  { t: 'Gosh the instant glow 🤩🤩🤩', u: 'linnyboo88', p: 'tt', cr: 'Lulu Lavender' },
+  { t: 'Ooooooooo I love lavender', u: 'carefree_cass', p: 'tt', cr: 'Lulu Lavender' },
+  { t: 'Me right now 😏 need !', u: 'sophy__ngo', p: 'tt', cr: 'Samantha' },
+  { t: 'Sounds really promising 😍😍', u: 'tania_ugc_creator', p: 'ig', cr: 'Marina/Luckymia' },
+  { t: 'I love it girl 🥰', u: 'breannatyler26', p: 'tt', cr: 'Samantha' },
+  { t: 'Wow this look so nice babe 😍 @28litsea', u: 'marissamariiie', p: 'tt', cr: 'Samantha' },
+  { t: 'So glowy!!', u: 'jessienicholee', p: 'tt', cr: 'Lulu Lavender' },
+  { t: 'These sound great specially the oil', u: 'pamyguzman', p: 'tt', cr: 'Lulu Lavender' },
+  { t: 'They’re from my home state and town', u: 'lovedaladies21', p: 'tt', cr: 'Lulu Lavender' },
+  { t: 'Looks so good !😍', u: 'bogatella.ugc', p: 'ig', cr: 'Marina/Luckymia' },
+  { t: 'oo this sounds so good', u: 'angelicamvogt', p: 'tt', cr: 'Emma Boersma' },
+  { t: 'Needed😍😍', u: 'enkeledadh', p: 'tt', cr: 'Samantha' },
+  { t: 'Looks amazing🥰❤️', u: 'elichacon888', p: 'tt', cr: 'Samantha' },
+  { t: 'Sounds great 🔥', u: 'oksana_gaevskaya', p: 'ig', cr: 'Marina/Luckymia' },
+];
+
+const AV = ['#ff7eb3', '#9b8cff', '#5ad1c4', '#ffb454', '#7ec8ff', '#ff8a8a', '#6fe0a8', '#ffd166', '#c4a3ff', '#8ab6ff', '#ff9f7e', '#7adf9a'];
+function hash(s) { let h = 0; for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0; return h; }
+export const avColor = (u) => AV[hash(u) % AV.length];
+export const likeCount = (u) => { const n = hash(u) % 1400; return n > 999 ? `${(n / 1000).toFixed(1)}k` : `${n}`; };
+export const timeAgo = (u) => { const opts = ['1d', '2d', '3d', '4d', '5d', '6d', '1w', '2w']; return opts[hash(u) % opts.length]; };

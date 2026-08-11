@@ -1,0 +1,78 @@
+- generic [ref=e2]:
+  - generic [ref=e4]:
+    - complementary [ref=e5]:
+      - generic [ref=e6]:
+        - link "Benable brand collabs home" [ref=e8] [cursor=pointer]:
+          - /url: /brand/tonypikora
+          - img "Benable" [ref=e9]
+        - navigation "Primary" [ref=e10]:
+          - generic [ref=e11]: Platform
+          - generic [ref=e12]:
+            - link "Campaigns" [ref=e13] [cursor=pointer]:
+              - /url: /brand/tonypikora/campaigns
+              - img [ref=e16]
+              - generic [ref=e18]: Campaigns
+            - link "UGC Studio Soon" [ref=e19] [cursor=pointer]:
+              - /url: /brand/tonypikora/ugc
+              - img [ref=e22]
+              - generic [ref=e24]: UGC Studio
+              - generic [ref=e25]: Soon
+            - link "Push Alerts Soon" [ref=e26] [cursor=pointer]:
+              - /url: /brand/tonypikora/alerts
+              - img [ref=e29]
+              - generic [ref=e31]: Push Alerts
+              - generic [ref=e32]: Soon
+            - link "Brand Intelligence Soon" [ref=e33] [cursor=pointer]:
+              - /url: /brand/tonypikora/intelligence
+              - img [ref=e36]
+              - generic [ref=e38]: Brand Intelligence
+              - generic [ref=e39]: Soon
+        - generic [ref=e41]:
+          - navigation "Secondary" [ref=e42]:
+            - link "Settings" [ref=e43] [cursor=pointer]:
+              - /url: /brand/tonypikora/settings
+              - img [ref=e46]
+              - generic [ref=e48]: Settings
+          - button "Open account menu for Pikora" [ref=e50] [cursor=pointer]:
+            - generic "Pikora" [ref=e51]:
+              - img "Pikora" [ref=e52]
+            - strong [ref=e54]: Pikora
+    - main [ref=e55]:
+      - generic [ref=e786]:
+        - button "Back" [ref=e788] [cursor=pointer]:
+          - img [ref=e790]
+          - generic [ref=e793]: Back
+        - generic [ref=e794]:
+          - heading "Choose a gift card amount" [level=1] [ref=e795]
+          - paragraph [ref=e796]:
+            - text: Every creator gets the same card. Our data shows
+            - strong [ref=e797]: $400-$700
+            - text: hits the best response rate for your category.
+        - generic [ref=e798]:
+          - generic [ref=e799]:
+            - generic [ref=e800]:
+              - img [ref=e803]
+              - generic [ref=e804]:
+                - strong [ref=e805]: $500
+                - generic [ref=e806]: Pikora Gift Card
+            - generic [ref=e807]:
+              - strong [ref=e808]: $500
+              - text: per creator
+          - generic [ref=e809]:
+            - paragraph [ref=e810]: Pick your card value
+            - radiogroup "Gift card amount" [ref=e811]:
+              - radio "$400" [ref=e812] [cursor=pointer]:
+                - strong [ref=e813]: $400
+              - radio "$500 Best" [checked] [ref=e814] [cursor=pointer]:
+                - strong [ref=e815]: $500
+                - generic [ref=e816]: Best
+              - radio "$700" [ref=e817] [cursor=pointer]:
+                - strong [ref=e818]: $700
+              - generic [ref=e820] [cursor=pointer]: Other
+            - generic [ref=e821] [cursor=pointer]:
+              - checkbox "Free Shipping will be included on top of the Gift Card Value." [checked]
+              - generic [ref=e823]: Free Shipping will be included on top of the Gift Card Value.
+        - button "Create My Campaign" [ref=e825] [cursor=pointer]:
+          - generic [ref=e826]: Create My Campaign
+          - img [ref=e828]
+  - generic [ref=e173]: Create Campaign

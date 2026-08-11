@@ -1,0 +1,93 @@
+/* ── Wall of Love · low-count (<8 comments) design study ──────────────────
+   The production wall is a 4-col grid with an overflow + bottom-fade mask —
+   it reads as "so many we can't show them all." With a handful of comments
+   that illusion collapses (sparse rows, a fade over nothing). These
+   directions make a SMALL number of comments feel featured, not empty. */
+
+/* Card theme matching the deck's comments slide (soft pink → lavender). */
+.cst-card--love {
+  background: linear-gradient(155deg, #fbe9f1 0%, #f3ecfb 52%, #eef0fc 100%);
+  color: #2a2342;
+  --chrome: rgba(40,30,60,0.5); --bar: rgba(40,30,60,0.14); --on: #a06bff;
+  --eyebrow: #b3789c; --h3: #2a2342;
+}
+
+.wsl-stage {
+  flex: 1; display: flex; flex-direction: column; align-items: center;
+  justify-content: flex-start; padding: 32px 40px 46px; gap: 24px; text-align: center;
+}
+.wsl-head .wsl-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--eyebrow); }
+.wsl-head h3 { font-size: 34px; font-weight: 800; letter-spacing: -0.02em; margin: 6px 0 0; color: var(--h3); }
+.wsl-head h3 em { font-style: normal; background: linear-gradient(90deg,#ff6fae,#a06bff); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+
+/* ── Base comment card (scaled up from the real .gl-wcard) ── */
+.wsl-card {
+  position: relative; background: #fff; border-radius: 16px; padding: 15px 17px;
+  text-align: left; box-shadow: 0 10px 26px rgba(80,50,90,0.12);
+  transform: rotate(var(--t, 0deg));
+}
+.wsl-card__plat { position: absolute; top: 11px; right: 11px; width: 22px; height: 22px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: #fff; }
+.wsl-card__plat.tt { background: #111; } .wsl-card__plat.ig { background: linear-gradient(135deg,#feda75,#d62976,#962fbf); }
+.wsl-card__row { display: flex; gap: 11px; }
+.wsl-card__av { width: 34px; height: 34px; border-radius: 50%; color: #fff; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; flex: 0 0 auto; }
+.wsl-card__u { font-size: 12px; font-weight: 600; color: #9a948b; }
+.wsl-card__t { font-size: 15px; line-height: 1.4; color: #1a1a1a; margin-top: 2px; }
+.wsl-card__t .m { color: #a06bff; font-weight: 600; }
+
+/* ── A · centered single column ── */
+.wsl-column { display: flex; flex-direction: column; gap: 14px; width: 100%; max-width: 460px; }
+
+/* ── B · centered 2-col cluster (recommended for 4–7) ── */
+.wsl-cluster { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; max-width: 700px; }
+.wsl-cluster .wsl-card { width: calc(50% - 7px); }
+.wsl-cluster--tight { max-width: 520px; }
+.wsl-cluster--tight .wsl-card { width: 100%; }
+
+/* ── C · hero pull-quote + supporting chips (recommended for 1–3) ── */
+.wsl-hero { max-width: 640px; position: relative; }
+.wsl-hero__mark { font-family: 'Fraunces', Georgia, serif; font-style: italic; font-size: 90px; line-height: 0.6; color: rgba(160,107,255,0.26); display: block; height: 40px; }
+.wsl-hero__q { font-family: 'Fraunces', Georgia, serif; font-size: 30px; line-height: 1.3; font-weight: 600; color: #2a2342; }
+.wsl-hero__who { display: inline-flex; align-items: center; gap: 9px; margin-top: 18px; font-size: 14px; color: #6b5570; font-weight: 600; }
+.wsl-hero__av { width: 30px; height: 30px; border-radius: 50%; color: #fff; font-weight: 700; font-size: 13px; display: flex; align-items: center; justify-content: center; }
+.wsl-hero__rest { display: flex; flex-wrap: wrap; justify-content: center; gap: 11px; max-width: 660px; margin-top: 10px; }
+.wsl-hero__rest .wsl-card { width: calc(33.333% - 8px); }
+.wsl-hero__rest .wsl-card__t { font-size: 13px; }
+
+/* ── D · authentic phone comment thread ── */
+.wsl-phone { width: 304px; background: #fff; border-radius: 26px; box-shadow: 0 18px 46px rgba(80,50,90,0.24); overflow: hidden; text-align: left; }
+.wsl-phone__top { padding: 14px 16px; font-size: 13px; font-weight: 700; color: #1a1a1a; border-bottom: 1px solid #eee; text-align: center; }
+.wsl-phone__c { display: flex; gap: 10px; padding: 12px 16px; }
+.wsl-phone__c + .wsl-phone__c { border-top: 1px solid #f4f1ee; }
+.wsl-phone__av { width: 30px; height: 30px; border-radius: 50%; color: #fff; font-weight: 700; font-size: 13px; display: flex; align-items: center; justify-content: center; flex: 0 0 auto; }
+.wsl-phone__u { font-size: 12px; font-weight: 700; color: #1a1a1a; }
+.wsl-phone__t { font-size: 13px; line-height: 1.35; color: #333; margin-top: 1px; }
+.wsl-phone__t .m { color: #a06bff; font-weight: 600; }
+
+/* ── Original grid (the "other design") for >10 comments ──
+   Mirrors the production .gl-wall: 4-col grid, denser cards, bottom-fade
+   mask so it reads as "so much love it overflows." */
+.wsl-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+  width: 100%; max-width: 880px; margin: 0 auto; max-height: 430px;
+  overflow: hidden; align-content: start;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 72%, transparent 100%);
+          mask-image: linear-gradient(to bottom, #000 0%, #000 72%, transparent 100%);
+}
+.wsl-grid .wsl-card { padding: 11px 12px; box-shadow: 0 6px 16px rgba(80,50,90,0.10); }
+.wsl-grid .wsl-card__plat { width: 20px; height: 20px; top: 9px; right: 9px; font-size: 10px; }
+.wsl-grid .wsl-card__av { width: 30px; height: 30px; font-size: 13px; }
+.wsl-grid .wsl-card__u { font-size: 11px; }
+.wsl-grid .wsl-card__t { font-size: 13.5px; line-height: 1.35; }
+
+/* ── E · scatter / collage ── */
+.wsl-scatter { position: relative; width: 100%; max-width: 760px; height: 400px; margin: 0 auto; }
+.wsl-scatter .wsl-card { position: absolute; width: 250px; }
+
+/* sparkle accents */
+.wsl-spk { position: absolute; pointer-events: none; color: #cfa8ff; }
+
+/* recommendation callout in the study header */
+.cst-rec { max-width: 1180px; margin: 0 auto 30px; background: rgba(122,92,250,0.12); border: 1px solid rgba(122,92,250,0.3); border-radius: 14px; padding: 16px 20px; }
+.cst-rec b { color: #c9b6ff; }
+.cst-rec ul { margin: 8px 0 0; padding-left: 18px; color: rgba(255,255,255,0.72); font-size: 14px; line-height: 1.6; }
+.cst-rec code { background: rgba(255,255,255,0.1); padding: 1px 6px; border-radius: 5px; font-size: 13px; }

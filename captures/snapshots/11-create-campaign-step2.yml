@@ -1,0 +1,87 @@
+- generic [ref=e2]:
+  - generic [ref=e4]:
+    - complementary [ref=e5]:
+      - generic [ref=e6]:
+        - link "Benable brand collabs home" [ref=e8] [cursor=pointer]:
+          - /url: /brand/tonypikora
+          - img "Benable" [ref=e9]
+        - navigation "Primary" [ref=e10]:
+          - generic [ref=e11]: Platform
+          - generic [ref=e12]:
+            - link "Campaigns" [ref=e13] [cursor=pointer]:
+              - /url: /brand/tonypikora/campaigns
+              - img [ref=e16]
+              - generic [ref=e18]: Campaigns
+            - link "UGC Studio Soon" [ref=e19] [cursor=pointer]:
+              - /url: /brand/tonypikora/ugc
+              - img [ref=e22]
+              - generic [ref=e24]: UGC Studio
+              - generic [ref=e25]: Soon
+            - link "Push Alerts Soon" [ref=e26] [cursor=pointer]:
+              - /url: /brand/tonypikora/alerts
+              - img [ref=e29]
+              - generic [ref=e31]: Push Alerts
+              - generic [ref=e32]: Soon
+            - link "Brand Intelligence Soon" [ref=e33] [cursor=pointer]:
+              - /url: /brand/tonypikora/intelligence
+              - img [ref=e36]
+              - generic [ref=e38]: Brand Intelligence
+              - generic [ref=e39]: Soon
+        - generic [ref=e41]:
+          - navigation "Secondary" [ref=e42]:
+            - link "Settings" [ref=e43] [cursor=pointer]:
+              - /url: /brand/tonypikora/settings
+              - img [ref=e46]
+              - generic [ref=e48]: Settings
+          - button "Open account menu for Pikora" [ref=e50] [cursor=pointer]:
+            - generic "Pikora" [ref=e51]:
+              - img "Pikora" [ref=e52]
+            - strong [ref=e54]: Pikora
+    - main [ref=e55]:
+      - generic [ref=e703]:
+        - button "Back" [ref=e705] [cursor=pointer]:
+          - img [ref=e707]
+          - generic [ref=e710]: Back
+        - generic [ref=e711]:
+          - generic [ref=e712]:
+            - heading "Set up your campaign" [level=1] [ref=e713]
+            - paragraph [ref=e714]: Choose the type of content and how you'd like to reward creators.
+          - generic [ref=e715]:
+            - heading "Who's posting the content?" [level=2] [ref=e716]
+            - generic [ref=e717]:
+              - button "Creator Posts Creators post on their own TikTok and Instagram accounts." [ref=e718]:
+                - img [ref=e721]
+                - strong [ref=e723]: Creator Posts
+                - paragraph [ref=e724]: Creators post on their own TikTok and Instagram accounts.
+              - generic [ref=e725]:
+                - generic [ref=e726]:
+                  - img [ref=e728]
+                  - generic [ref=e731]: Coming soon
+                - img [ref=e734]
+                - strong [ref=e737]: UGC for Your Brand
+                - paragraph [ref=e738]: Creators send content directly to you for your channels.
+          - generic [ref=e739]:
+            - heading "How will you reward creators?" [level=2] [ref=e740]
+            - generic [ref=e741]:
+              - button "Gift Card Give creators a gift card to shop your store." [ref=e742]:
+                - img [ref=e745]
+                - strong [ref=e747]: Gift Card
+                - paragraph [ref=e748]: Give creators a gift card to shop your store.
+              - button "Coming soon Gifted Product Send your product for free in exchange for content." [ref=e749]:
+                - generic [ref=e750]:
+                  - img [ref=e752]
+                  - generic [ref=e755]: Coming soon
+                - img [ref=e758]
+                - strong [ref=e762]: Gifted Product
+                - paragraph [ref=e763]: Send your product for free in exchange for content.
+              - generic [ref=e764]:
+                - generic [ref=e765]:
+                  - img [ref=e767]
+                  - generic [ref=e770]: Soon
+                - img [ref=e773]
+                - strong [ref=e778]: Hybrid
+                - paragraph [ref=e779]: Gift product plus a fee for each post.
+          - button "Choose Gift Card Amount" [ref=e781] [cursor=pointer]:
+            - generic [ref=e782]: Choose Gift Card Amount
+            - img [ref=e784]
+  - generic [ref=e173]: Create Campaign

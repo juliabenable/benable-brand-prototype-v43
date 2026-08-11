@@ -1,0 +1,115 @@
+/* ── "Content has arrived" — celebratory reveal study ─────────────────────
+   The brand's Content tab currently just shows posts in a grid. These
+   directions make the arrival feel like a moment: a gift, a drop, a little
+   confetti. Each demo replays via its Replay button. */
+
+/* light "Content tab" panel sitting on the dark study page */
+.crl-frame { background:#fff; border-radius:16px; box-shadow:0 16px 44px rgba(0,0,0,0.4); color:#1c1c1c; overflow:hidden; }
+.crl-tabs { display:flex; gap:22px; padding:14px 22px 0; border-bottom:1px solid #ededf1; }
+.crl-tab { font-size:13.5px; font-weight:600; color:#8b8694; padding:0 0 11px; position:relative; }
+.crl-tab--on { color:#15131c; }
+.crl-tab--on::after { content:''; position:absolute; left:0; right:0; bottom:-1px; height:2px; background:#15131c; border-radius:2px; }
+.crl-canvas { position:relative; min-height:300px; padding:20px 22px 24px; overflow:hidden; }
+.crl-replbar { display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+.crl-replay { display:inline-flex; align-items:center; gap:6px; font-size:12.5px; font-weight:700; color:#6a4bd6; background:#f1ecfc; border:1px solid #e2d8fa; border-radius:8px; padding:6px 11px; cursor:pointer; }
+.crl-replay:hover { background:#e9e1fb; }
+.crl-cap { font-size:12.5px; color:#9a93a3; }
+
+/* ── content card (compact) ── */
+.crl-grid { display:flex; gap:14px; justify-content:center; }
+.crl-card { width:148px; flex:0 0 auto; background:#fff; border-radius:13px; box-shadow:0 0 0 1px #e9e7ee, 0 8px 20px rgba(40,30,60,0.08); overflow:hidden; position:relative; }
+.crl-card__thumb { position:relative; height:196px; background:#eee center/cover no-repeat; }
+.crl-card__plat { position:absolute; top:8px; left:8px; width:22px; height:22px; border-radius:6px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:11px; }
+.crl-card__plat.tt { background:#111; } .crl-card__plat.ig { background:linear-gradient(135deg,#feda75,#d62976,#962fbf); }
+.crl-card__foot { display:flex; align-items:center; gap:8px; padding:9px 10px; }
+.crl-av { width:24px; height:24px; border-radius:50%; background:#d9d4e2 center/cover no-repeat; flex:0 0 auto; }
+.crl-who b { font-size:11.5px; color:#1c1a24; display:block; line-height:1.1; }
+.crl-who small { font-size:10px; color:#9a93a3; }
+
+/* ── A · Spotlight takeover ── */
+.crl-spotlight { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:6px;
+  background:radial-gradient(120% 100% at 50% 0%, #efe7ff, #fff 70%); z-index:5; animation:crlSpotIn .5s ease both; }
+.crl-spotlight--gone { animation:crlSpotOut .5s ease forwards; pointer-events:none; }
+.crl-spot__kicker { font-size:12px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#a06bff; }
+.crl-spot__title { font-size:26px; font-weight:800; letter-spacing:-0.02em; color:#231b39; }
+.crl-spot__sub { font-size:13.5px; color:#6f6781; }
+.crl-spot__cta { margin-top:12px; display:inline-flex; align-items:center; gap:7px; background:linear-gradient(135deg,#ff6fae,#a06bff); color:#fff; border:0; border-radius:11px; padding:10px 18px; font-size:14px; font-weight:700; cursor:pointer; box-shadow:0 8px 20px rgba(160,107,255,0.32); }
+@keyframes crlSpotIn { from{opacity:0; transform:scale(1.04);} to{opacity:1; transform:none;} }
+@keyframes crlSpotOut { to{opacity:0; transform:scale(0.97);} }
+
+/* ── cascade entrance (B/A grid) ── */
+.crl-card--cascade { opacity:0; animation:crlPop .55s cubic-bezier(.2,.85,.3,1.3) forwards; animation-delay:var(--d,0s); }
+@keyframes crlPop { from{opacity:0; transform:translateY(26px) scale(.92);} to{opacity:1; transform:none;} }
+
+/* ── confetti ── */
+.crl-confetti { position:absolute; inset:0; pointer-events:none; overflow:hidden; z-index:6; }
+.crl-confetti i { position:absolute; top:-12px; width:8px; height:12px; border-radius:2px; opacity:0; animation:crlFall 1.5s ease-in forwards; animation-delay:var(--cd,0s); }
+@keyframes crlFall { 0%{opacity:0; transform:translateY(-10px) rotate(0);} 12%{opacity:1;} 100%{opacity:0; transform:translateY(320px) rotate(540deg);} }
+.crl-headline { text-align:center; font-size:22px; font-weight:800; letter-spacing:-0.01em; color:#231b39; margin-bottom:14px; }
+.crl-headline em { font-style:normal; background:linear-gradient(90deg,#ff6fae,#a06bff); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+
+/* ── D · gift unwrap ── */
+.crl-gift { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; text-align:center;
+  background:radial-gradient(120% 100% at 50% 30%, #fff0f6, #fff 72%); z-index:5; cursor:pointer; transition:opacity .45s ease, transform .45s ease; }
+.crl-gift--open { opacity:0; transform:scale(1.06); pointer-events:none; }
+.crl-gift__box { font-size:54px; animation:crlWiggle 1.6s ease-in-out infinite; }
+@keyframes crlWiggle { 0%,100%{transform:rotate(-4deg);} 50%{transform:rotate(4deg);} }
+.crl-gift__t { font-size:17px; font-weight:700; color:#231b39; }
+.crl-gift__d { font-size:13px; color:#7d7488; }
+.crl-gift__hint { font-size:12px; font-weight:700; color:#d6478a; letter-spacing:0.04em; text-transform:uppercase; }
+
+/* ── E · toast + NEW shimmer badge ── */
+.crl-toast { position:absolute; top:14px; left:50%; transform:translateX(-50%); display:inline-flex; align-items:center; gap:9px;
+  background:#1f1d27; color:#fff; border-radius:12px; padding:9px 15px; font-size:13.5px; box-shadow:0 12px 30px rgba(0,0,0,0.28); z-index:7; animation:crlToast .5s cubic-bezier(.2,.85,.3,1.3) both; }
+@keyframes crlToast { from{opacity:0; transform:translate(-50%,-16px);} to{opacity:1; transform:translate(-50%,0);} }
+.crl-new { position:absolute; top:8px; right:8px; z-index:2; font-size:9.5px; font-weight:800; letter-spacing:0.06em; color:#fff; padding:3px 7px; border-radius:999px;
+  background:linear-gradient(100deg,#ff6fae,#a06bff,#ff6fae); background-size:200% 100%; animation:crlShimmer 1.8s linear infinite; box-shadow:0 3px 8px rgba(160,107,255,0.4); }
+@keyframes crlShimmer { to{background-position:200% 0;} }
+
+/* ── F · shine sweep + float ── */
+.crl-card--shine .crl-card__thumb::after { content:''; position:absolute; inset:0; background:linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.55) 48%, transparent 66%); transform:translateX(-130%); animation:crlShine 2.4s ease-in-out infinite; animation-delay:var(--d,0s); }
+@keyframes crlShine { 0%,60%{transform:translateX(-130%);} 100%{transform:translateX(130%);} }
+.crl-card--float { animation:crlFloat 3.4s ease-in-out infinite; animation-delay:var(--d,0s); }
+@keyframes crlFloat { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-6px);} }
+
+/* ── mixed grid: already-seen content + new-to-review ── */
+.crl-group { position:relative; }
+.crl-group + .crl-group { margin-top:16px; }
+.crl-group__label { display:flex; align-items:center; gap:8px; font-size:11.5px; font-weight:800; letter-spacing:0.06em; text-transform:uppercase; margin:0 0 11px; color:#a06bff; }
+.crl-group__label--muted { color:#a39db0; }
+.crl-pill { font-size:10px; font-weight:800; color:#fff; background:linear-gradient(100deg,#ff6fae,#a06bff); border-radius:999px; padding:2px 8px; }
+.crl-divider { height:1px; background:#ededf1; margin:2px 0 0; }
+.crl-card--seen { opacity:0.52; }
+.crl-card--ring { box-shadow:0 0 0 2px #fff, 0 0 0 3px #a06bff, 0 10px 24px rgba(160,107,255,0.28) !important; }
+.crl-spk2 { position:absolute; color:#cda9ff; pointer-events:none; z-index:3; }
+.crl-seenhead { font-size:13.5px; font-weight:700; color:#231b39; margin-bottom:12px; }
+.crl-seenhead em { font-style:normal; color:#a06bff; }
+
+/* ── J · individually gift-wrapped new cards (tap to unwrap) ── */
+.crl-wrapbox { position:relative; width:148px; flex:0 0 auto; }
+.crl-wrap { position:absolute; inset:0; z-index:4; cursor:pointer; border:0; padding:0; border-radius:13px; overflow:hidden; background:transparent; }
+.crl-wrap__half { position:absolute; top:0; bottom:0; width:50.5%;
+  background:
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.16) 0 6px, transparent 6px 15px),
+    linear-gradient(160deg, #b98cff, #8a5cf0);
+  transition: transform .6s cubic-bezier(.5,0,.2,1), opacity .55s ease; }
+.crl-wrap__half--l { left:0; box-shadow:inset -6px 0 12px rgba(0,0,0,0.12); }
+.crl-wrap__half--r { right:0; box-shadow:inset 6px 0 12px rgba(0,0,0,0.12); }
+.crl-wrap__ribbon { position:absolute; left:50%; top:0; bottom:0; width:16px; transform:translateX(-50%); background:linear-gradient(#ffe08a,#ffc846); z-index:2; transition:opacity .3s ease; }
+.crl-wrap__ribbonh { position:absolute; left:0; right:0; top:50%; height:16px; transform:translateY(-50%); background:linear-gradient(#ffe08a,#ffc846); z-index:2; transition:opacity .3s ease; }
+.crl-wrap__bow { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); font-size:34px; z-index:3; transition:transform .45s cubic-bezier(.2,.85,.3,1.4), opacity .4s ease; }
+.crl-wrap__hint { position:absolute; left:50%; bottom:12px; transform:translateX(-50%); z-index:3; font-size:10px; font-weight:800; letter-spacing:0.06em; text-transform:uppercase; color:#fff; background:rgba(0,0,0,0.3); padding:3px 9px; border-radius:999px; white-space:nowrap; }
+.crl-wrap--open { pointer-events:none; }
+.crl-wrap--open .crl-wrap__half--l { transform:translateX(-104%) rotate(-7deg); opacity:0; }
+.crl-wrap--open .crl-wrap__half--r { transform:translateX(104%) rotate(7deg); opacity:0; }
+.crl-wrap--open .crl-wrap__ribbon,
+.crl-wrap--open .crl-wrap__ribbonh,
+.crl-wrap--open .crl-wrap__hint { opacity:0; }
+.crl-wrap--open .crl-wrap__bow { transform:translate(-50%,-155%) scale(1.5) rotate(14deg); opacity:0; }
+
+/* ── micro-delight chips (static reference) ── */
+.crl-micros { display:flex; flex-wrap:wrap; gap:18px; }
+.crl-micro { background:#fff; border-radius:13px; box-shadow:0 0 0 1px #e9e7ee; padding:14px; width:200px; }
+.crl-micro h5 { margin:0 0 4px; font-size:13px; color:#1c1a24; }
+.crl-micro p { margin:0; font-size:12px; color:#8b8694; line-height:1.4; }
+.crl-ring { box-shadow:0 0 0 2px #fff, 0 0 0 4px #a06bff, 0 8px 20px rgba(160,107,255,0.3) !important; }

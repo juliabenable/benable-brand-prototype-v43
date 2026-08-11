@@ -1,0 +1,6 @@
+/* ── Content carousel · centered gallery for 1–4 pieces (real size) ───────
+   The wrap's content slide auto-switches from the 3D coverflow to this
+   static centered gallery when a campaign has ≤4 pieces. Shown here at the
+   real 960×720 deck size for handoff. */
+.ccs-stagewrap { display: flex; justify-content: center; }
+.ccs-stagewrap .gl-stage { box-shadow: 0 24px 60px rgba(0,0,0,0.42); }

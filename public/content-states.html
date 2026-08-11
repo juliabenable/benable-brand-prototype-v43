@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rail content states — While you were away · Up next</title>
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  body { font-family: -apple-system, "system-ui", "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f9fafb; color: #1c1c1c; padding: 40px 24px 80px; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 980px; margin: 0 auto; }
+  h1 { font-size: 26px; letter-spacing: -0.4px; margin-bottom: 6px; }
+  .sub { color: #717171; font-size: 14.5px; margin-bottom: 28px; }
+  h2 { font-size: 17px; margin: 36px 0 12px; }
+  .card { background: #fff; border: 1px solid #e3e3e3; border-radius: 16px; padding: 20px 22px; margin-bottom: 14px; box-shadow: 0 4px 8px rgba(0,0,0,0.03); }
+  .rule { display: flex; gap: 10px; padding: 9px 0; font-size: 14px; line-height: 1.55; color: #444; border-bottom: 1px solid #f0f0f0; }
+  .rule:last-child { border-bottom: none; }
+  .rule b { color: #1c1c1c; }
+  .rule .n { flex: none; width: 22px; height: 22px; border-radius: 999px; background: #f5f3fc; color: #7a5cfa; font-size: 12px; font-weight: 700; display: grid; place-items: center; margin-top: 1px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th { text-align: left; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: #717171; padding: 10px 12px; background: #fafafa; border-bottom: 1px solid #e3e3e3; }
+  td { padding: 12px; border-bottom: 1px solid #f0f0f0; vertical-align: top; line-height: 1.55; color: #444; }
+  tr:last-child td { border-bottom: none; }
+  .day { font-weight: 700; color: #1c1c1c; white-space: nowrap; }
+  .since { color: #9a9a9a; font-size: 12px; }
+  .item b { color: #1c1c1c; font-weight: 600; }
+  .eta { color: #9a9a9a; }
+  .phase { display: inline-block; background: #fff0ce; color: #a85321; border-radius: 999px; padding: 3px 10px; font-size: 12px; font-weight: 600; }
+  .note { background: #f5f3fc; border-radius: 10px; padding: 12px 16px; font-size: 13px; color: #444; line-height: 1.55; margin-top: 10px; }
+  .note b { color: #1c1c1c; }
+  code { background: #f4f4f5; border-radius: 5px; padding: 1px 6px; font-size: 12.5px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Rail content states</h1>
+  <p class="sub">Everything the "While you were away" and "Up next" cards can show, and the rules behind them · benable-brand-prototype-v35</p>
+
+  <h2>The logic</h2>
+  <div class="card">
+    <div class="rule"><span class="n">1</span><span><b>The cards only exist on live-dashboard days.</b> Days 1 and 3 are pre-campaign phases (Stay&nbsp;Tuned / Creators&nbsp;Found) with no rail at all, so their content starts at Day&nbsp;4.</span></div>
+    <div class="rule"><span class="n">2</span><span><b>In the prototype, every line is hand-written per demo day</b> in <code>pulseData.js → DAYS</code>. Nothing is derived — each day carries a <code>recap</code> (a "since" anchor + 3–4 items) and an <code>upNext</code> list (2–3 items with ETAs). The tables below are that content, verbatim.</span></div>
+    <div class="rule"><span class="n">3</span><span><b>The production intent:</b> "While you were away" = the ranked deltas since the brand's last visit (what got handled for them, biggest first, max ~4); "Up next" = the nearest future events with honest ETAs (max ~3). The demo copy models the tone for both.</span></div>
+    <div class="rule"><span class="n">4</span><span><b>Anatomy:</b> recap items are <i>bold fact + quiet tail</i> ("<b>4 packages shipped</b> — first one already delivered"); up-next items are <i>bold event + "— eta"</i>. Emoji leads every line.</span></div>
+    <div class="rule"><span class="n">5</span><span><b>Copy rules</b> (repo law): no zeros — a row shows a sentence about what's happening, never "0"; operational claims say "Katie's team"; no struggle updates — rematches read as reassurance ("3 stand-ins vetted", "Replacement matches found").</span></div>
+    <div class="rule"><span class="n">6</span><span><b>Time voice, everywhere:</b> the past gets real dates (Jul 16…), the present is "right now", and the future is always plain <b>"up next"</b> — per-step ETAs were removed from the timeline (Jul 27); precise ETAs live only in the "Up next" card, where they're a promise we track.</span></div>
+    <div class="note">The data also carries a <code>recap.closer</code> per day (a CTA line like "New matches are waiting · Review matches") — the current Amine card design doesn't render it; it's kept in the data as the hook for a future notification/CTA slot.</div>
+  </div>
+
+  <h2>While you were away — all states</h2>
+  <div class="card" style="padding:0; overflow:hidden;">
+    <table>
+      <tr><th style="width:130px">Day</th><th style="width:110px">Since</th><th>Items</th></tr>
+      <tr><td class="day">Day 1 · Launch</td><td colspan="2"><span class="phase">not shown</span> — page is the "Stay Tuned!" state</td></tr>
+      <tr><td class="day">Day 3 · Creators ready</td><td colspan="2"><span class="phase">not shown</span> — page is the "We Found 6 creators" review state</td></tr>
+      <tr><td class="day">Day 4 · Invites out</td><td class="since">since yesterday</td><td class="item">✉️ <b>6 invites sent</b> — the moment you approved your picks</td></tr>
+      <tr><td class="day">Day 9 · Cooking</td><td class="since">since Friday</td><td class="item">✉️ <b>6 invites sent</b> — the moment you approved your picks<br>✅ <b>4 of 6 accepted their invite</b><br>👋 <b>2 reminders to accept sent</b> — nothing needed your input<br>🔁 <b>1 creator declined</b> — we're already sourcing replacements</td></tr>
+      <tr><td class="day">Day 11 · Rematch found</td><td class="since">since Thursday</td><td class="item">🔁 <b>Replacement matches found</b> — profiles ready for your review<br>📬 <b>2 packages delivered</b> — 3 more on the truck<br>⏰ <b>Deadline reminders sent</b> to keep everyone on pace</td></tr>
+      <tr><td class="day">Day 16 · First content</td><td class="since">since Sunday</td><td class="item">📬 <b>All products delivered</b> — the creators are creating!<br>🎬 <b>2 videos submitted for review</b> — Katie's team is reviewing them for quality</td></tr>
+      <tr><td class="day">Day 22 · Going live</td><td class="since">since Monday</td><td class="item">📣 <b>3 posts went live</b> on IG &amp; TikTok<br>👀 <b>18.2k views</b> and climbing<br>🔗 <b>Links shared by all 3</b> — bio + pinned comments<br>💬 <b>People are loving it</b> — "best SPF I've tried, hands down" · @niaglow</td></tr>
+      <tr><td class="day">Day 30 · Wrap</td><td class="since">since last week</td><td class="item">🏆 <b>Top post: 18.9k views</b> — Nia's reel<br>🔗 <b>1,142 link taps</b> across all posts<br>💌 <b>Thank-yous sent</b> to all 6 creators</td></tr>
+    </table>
+  </div>
+
+  <h2>Up next — all states</h2>
+  <div class="card" style="padding:0; overflow:hidden;">
+    <table>
+      <tr><th style="width:130px">Day</th><th>Items</th></tr>
+      <tr><td class="day">Day 1 · Launch</td><td><span class="phase">not shown</span></td></tr>
+      <tr><td class="day">Day 3 · Creators ready</td><td><span class="phase">not shown</span></td></tr>
+      <tr><td class="day">Day 4 · Invites out</td><td class="item">💌 <b>First acceptances land</b> <span class="eta">— usually within 48h</span><br>📦 <b>Product picks + shipping</b> <span class="eta">— right after each acceptance</span></td></tr>
+      <tr><td class="day">Day 9 · Cooking</td><td class="item">📦 <b>All packages delivered</b> <span class="eta">— on track for Thursday</span><br>🔁 <b>Replacement picks</b> <span class="eta">— within 48h — we'll ping you</span><br>🎬 <b>First creators start filming</b> <span class="eta">— this weekend</span></td></tr>
+      <tr><td class="day">Day 11 · Rematch found</td><td class="item">✨ <b>Pick who you want to add to this campaign</b> <span class="eta">— waiting on you</span><br>📦 <b>Last packages deliver</b> <span class="eta">— by tomorrow</span><br>🎬 <b>First creators start filming</b> <span class="eta">— this weekend</span></td></tr>
+      <tr><td class="day">Day 16 · First content</td><td class="item">📣 <b>First posts go live</b> <span class="eta">— after quality checks!</span><br>🎥 <b>3 more creators film this week</b> <span class="eta">— submissions by Sunday</span></td></tr>
+      <tr><td class="day">Day 22 · Going live</td><td class="item">⏰ <b>Last creators go live</b> <span class="eta">— this week</span><br>🏁 <b>Campaign wrap</b> <span class="eta">— we'll send you your campaign recap</span></td></tr>
+      <tr><td class="day">Day 30 · Wrap</td><td class="item">🚀 <b>Campaign #2 — same crew or fresh faces</b> <span class="eta">— whenever you're ready</span></td></tr>
+    </table>
+  </div>
+
+  <h2>Creator rows — the four anatomies</h2>
+  <div class="card">
+    <div class="rule"><span class="n">1</span><span><b>Standard row</b> — photo avatar, name + blue verified check, @handle · status line (see registers below) · 7 purple stage dashes filled through the current stage · chevron; clicking expands the dated stage-history timeline (dates → "right now" → "up next").</span></div>
+    <div class="rule"><span class="n">2</span><span><b>Action row</b> — a standard row whose status turns <b style="color:#e0900f">⚑ orange</b> because something waits on the brand (<code>action</code> on the creator, e.g. Day 16 Jade's reel approval). Action rows <b>sort to the top</b> of the table and count into the rail's amber badge + Needs-you filter.</span></div>
+    <div class="rule"><span class="n">3</span><span><b>Sourcing row</b> — hatched "?" avatar, name "Sourcing", subtitle "New creators for your campaign", shimmer status (rotating machine verbs, never a number), empty dashes; expands to the sourcing timeline (Brief studied → Scanning → Shortlisting → Your review).</span></div>
+    <div class="rule"><span class="n">4</span><span><b>Matches-found row</b> — the sourcing row after a rematch succeeds (<code>found: true</code>): blurred tease photo, "New matches found", "found this morning", <b style="color:#e0900f">⚑ Review new matches</b>; no expansion (review happens in the flow), sorts to top, feeds the rail badge.</span></div>
+    <div class="note"><b>Status motion registers</b> (the status line is a <code>LiveStatus</code>, and every animation is a claim): <b>shimmer</b> = machine working right now (gradient sweep, rotating phrases) · <b>katie</b> = a human present (avatar + online dot + typing, never a spinner) · <b>heartbeat</b> = watching something live (one still sentence, gentle breathe) · <b>celebrate</b> = go-live (emoji bounces, words hold still) · <b>facts</b>/<b>static</b> = quiet truths, no motion. Emoji are stripped from status text at render — only celebrate keeps its one bouncing emoji.</div>
+  </div>
+
+  <h2>Every creator state, by day</h2>
+  <div class="card" style="padding:0; overflow:hidden;">
+    <table>
+      <tr><th style="width:120px">Day</th><th style="width:130px">Creator</th><th style="width:130px">Stage</th><th>Status line · register</th></tr>
+      <tr><td class="day">Day 1 · Launch</td><td colspan="3"><span class="phase">no table</span> — "Stay Tuned!" state (3 sourcing slots exist in data, unseen)</td></tr>
+      <tr><td class="day">Day 3 · Creators ready</td><td colspan="3"><span class="phase">no table</span> — "We Found 6 creators" review state</td></tr>
+      <tr><td class="day" rowspan="6">Day 4 · Invites out</td><td>Maya</td><td>Invited</td><td class="item">Invite sent this morning <span class="eta">· facts</span></td></tr>
+      <tr><td>Nia</td><td>Invited</td><td class="item">Invite sent this morning <span class="eta">· facts</span></td></tr>
+      <tr><td>Sofia</td><td>Invited</td><td class="item">Invite sent this morning <span class="eta">· facts</span></td></tr>
+      <tr><td>Jade</td><td>Invited</td><td class="item">Invite sent this morning <span class="eta">· facts</span></td></tr>
+      <tr><td>Priya</td><td>Invited</td><td class="item">Invite sent this morning <span class="eta">· facts</span></td></tr>
+      <tr><td>Lena</td><td>Invited</td><td class="item">Invite sent this morning <span class="eta">· facts</span> — declines before Day 9</td></tr>
+      <tr><td class="day" rowspan="6">Day 9 · Cooking</td><td>Maya</td><td>Order placed</td><td class="item">Cleared the Memphis hub <span class="eta">· facts</span></td></tr>
+      <tr><td>Nia</td><td>Order placed</td><td class="item">Picked SPF 50 Tinted <span class="eta">· facts</span></td></tr>
+      <tr><td>Sofia</td><td>Accepted</td><td class="item">Confirmed — shipping next <span class="eta">· static</span></td></tr>
+      <tr><td>Jade</td><td>Order placed</td><td class="item">Delivered yesterday <span class="eta">· facts</span></td></tr>
+      <tr><td>Priya</td><td>Accepted</td><td class="item">Sketching content ideas <span class="eta">· facts</span></td></tr>
+      <tr><td>Sourcing</td><td>—</td><td class="item">Sourcing her replacement… / Vetting stand-ins… / Checking availability… <span class="eta">· shimmer, rotating — no numbers in moving text</span></td></tr>
+      <tr><td class="day" rowspan="6">Day 11 · Rematch found</td><td><b>New matches found</b></td><td>—</td><td class="item"><b style="color:#e0900f">⚑ Review new matches</b> <span class="eta">· action, sorts to top, no expansion</span></td></tr>
+      <tr><td>Maya</td><td>Order received</td><td class="item">Delivered — unboxing soon <span class="eta">· facts</span></td></tr>
+      <tr><td>Jade</td><td>Order received</td><td class="item">Delivered yesterday <span class="eta">· facts</span></td></tr>
+      <tr><td>Nia</td><td>Order placed</td><td class="item">Out for delivery <span class="eta">· facts</span></td></tr>
+      <tr><td>Sofia</td><td>Order placed</td><td class="item">In transit — arriving tomorrow <span class="eta">· facts</span></td></tr>
+      <tr><td>Priya</td><td>Order placed</td><td class="item">Out for delivery <span class="eta">· facts</span></td></tr>
+      <tr><td class="day" rowspan="6">Day 16 · First content</td><td><b>Jade</b></td><td>Draft submitted</td><td class="item"><b style="color:#e0900f">⚑ Her reel passed every check — waiting on your approval since 9:40 am</b> <span class="eta">· action, sorts to top</span></td></tr>
+      <tr><td>Priya</td><td>Draft submitted</td><td class="item">Verifying your required link… / Checking the disclosure tag… / Running brand-safety checks… <span class="eta">· shimmer, rotating</span></td></tr>
+      <tr><td>Maya</td><td>Order received</td><td class="item">Filming Saturday — confirmed Tuesday <span class="eta">· facts</span></td></tr>
+      <tr><td>Nia</td><td>Order received</td><td class="item">Posted a BTS teaser to stories <span class="eta">· facts</span></td></tr>
+      <tr><td>Sofia</td><td>Order received</td><td class="item">Storyboarding her before/after <span class="eta">· facts</span></td></tr>
+      <tr><td>Amara</td><td>Order received</td><td class="item">First shoot this week <span class="eta">· facts</span></td></tr>
+      <tr><td class="day" rowspan="6">Day 22 · Going live</td><td>Nia</td><td>Content published</td><td class="item">🎉 Live — 3× more first-hour views than her typical videos <span class="eta">· celebrate</span></td></tr>
+      <tr><td>Sofia</td><td>Content published</td><td class="item">💬 Live on TikTok — already getting comments <span class="eta">· celebrate</span></td></tr>
+      <tr><td>Jade</td><td>Content published</td><td class="item">✨ Live — engagement is starting · 214 link taps <span class="eta">· celebrate</span></td></tr>
+      <tr><td>Maya</td><td>Draft submitted</td><td class="item">Posting Thursday <span class="eta">· facts</span></td></tr>
+      <tr><td>Priya</td><td>Draft submitted</td><td class="item">Katie's team is scheduling her post <span class="eta">· katie (avatar + typing)</span></td></tr>
+      <tr><td>Amara</td><td>Order received</td><td class="item">Final edits — due Sunday <span class="eta">· facts</span></td></tr>
+      <tr><td class="day" rowspan="6">Day 30 · Wrap</td><td>Nia</td><td>Thanked</td><td class="item">18.9k views — your top post · thank-you sent <span class="eta">· static</span></td></tr>
+      <tr><td>Jade</td><td>Thanked</td><td class="item">Fan favorite — 6.1% engagement · thank-you sent <span class="eta">· static</span></td></tr>
+      <tr><td>Sofia</td><td>Thanked</td><td class="item">2 posts live · thank-you sent <span class="eta">· static</span></td></tr>
+      <tr><td>Maya</td><td>Thanked</td><td class="item">Posted + link shared · thank-you sent <span class="eta">· static</span></td></tr>
+      <tr><td>Priya</td><td>Thanked</td><td class="item">Posted + link shared · thank-you sent <span class="eta">· static</span></td></tr>
+      <tr><td>Amara</td><td>Thanked</td><td class="item">Posted — strong debut · thank-you sent <span class="eta">· static</span></td></tr>
+    </table>
+  </div>
+  <div class="note" style="margin-top:14px"><b>Where the stage comes from:</b> each creator carries one number — the furthest crew stage reached (0–5) — which maps 1:1 onto the rail's 7 stages; on Day 30 everyone maps to Thanked. The dashes, the rail counts, the "N on this campaign" subtitle, and the badge all derive from that single field, so they can never disagree.</div>
+</div>
+</body>
+</html>

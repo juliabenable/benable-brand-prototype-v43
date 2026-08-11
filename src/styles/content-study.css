@@ -1,0 +1,96 @@
+/* =========================================================================
+   Content section — design study. Each direction framed as a theatrical
+   Wrapped card (progress + header) for coherence.
+   ========================================================================= */
+.cst { min-height: 100vh; background: #14121c; color: #fff; font-family: 'Inter', system-ui, sans-serif; padding: 44px 36px 100px; }
+.cst-hand { font-family: 'Caveat','Bradley Hand',cursive,system-ui; }
+
+.cst-top { max-width: 1180px; margin: 0 auto 40px; }
+.cst-top__kicker { font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #b69cff; font-weight: 600; }
+.cst-top h1 { font-size: 38px; font-weight: 700; letter-spacing: -0.03em; margin: 8px 0; }
+.cst-top p { font-size: 15px; color: rgba(255,255,255,0.6); max-width: 640px; margin: 0; line-height: 1.5; }
+
+.cst-study { max-width: 1180px; margin: 0 auto 46px; }
+.cst-study__label { display: flex; align-items: baseline; gap: 10px; margin-bottom: 14px; }
+.cst-study__id { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; background: #7a5cfa; color: #fff; font-size: 13px; font-weight: 700; }
+.cst-study__label b { font-size: 18px; }
+.cst-study__label small { font-size: 13px; color: rgba(255,255,255,0.5); }
+
+/* ---- theatrical Wrapped card frame ---- */
+.cst-card {
+  width: 100%; min-height: 500px; border-radius: 28px; overflow: hidden;
+  box-shadow: 0 28px 64px rgba(0,0,0,0.46);
+  display: flex; flex-direction: column; position: relative;
+}
+.cst-card--wall { background: radial-gradient(circle at 50% 22%, #f3eee9, #e5ddd4); color: #2a2342; --chrome: rgba(40,30,60,0.5); --bar: rgba(40,30,60,0.16); --on: #7a5cfa; --eyebrow: #9a8f82; --h3: #2a2342; }
+.cst-card--light { background: #fbfafd; color: #1c1c1c; --chrome: rgba(40,30,60,0.5); --bar: rgba(40,30,60,0.14); --on: #7a5cfa; --eyebrow: #9a93a3; --h3: #1c1c1c; }
+.cst-card--ink { background: radial-gradient(120% 90% at 50% -10%, #261f40, #100d1a); color: #fff; --chrome: rgba(255,255,255,0.72); --bar: rgba(255,255,255,0.26); --on: #b69cff; --eyebrow: rgba(255,255,255,0.6); --h3: #fff; }
+
+.cst-chrome { padding: 16px 24px 0; }
+.cst-chrome__bars { display: flex; gap: 5px; }
+.cst-chrome__bars span { flex: 1; height: 3px; border-radius: 3px; background: var(--bar); }
+.cst-chrome__bars span.on { background: var(--on); }
+.cst-chrome__head { margin-top: 13px; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--chrome); display: flex; align-items: center; gap: 7px; }
+.cst-chrome__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--on); }
+.cst-card__body { flex: 1; display: flex; flex-direction: column; }
+
+/* ---- shared header + creator chip ---- */
+.cnt-head { text-align: center; margin-bottom: 26px; }
+.cnt-eyebrow { font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--eyebrow); font-weight: 600; }
+.cnt-head h3 { font-size: 30px; font-weight: 700; letter-spacing: -0.02em; margin: 6px 0 0; color: var(--h3); }
+
+.chip { display: flex; align-items: center; gap: 9px; min-width: 0; }
+.chip__av { flex: 0 0 auto; width: 32px; height: 32px; border-radius: 50%; background: #ccc center/cover no-repeat; box-shadow: 0 0 0 2px rgba(255,255,255,0.9); }
+.chip__who { min-width: 0; }
+.chip__who b { display: block; font-size: 13px; font-weight: 600; color: #fff; line-height: 1.18; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.chip__who small { display: block; font-size: 11px; color: rgba(255,255,255,0.82); }
+.chip--light .chip__who b { color: #2a2342; }
+.chip--light .chip__who small { color: #8a7fa0; }
+
+/* ---------- A. Polaroid wall ---------- */
+.pw { padding: 30px 40px 42px; }
+.pw__board { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 28px 34px; }
+.pw__pola { display: block; width: 188px; padding: 12px 12px 0; background: #fff; border-radius: 3px; box-shadow: 0 18px 34px rgba(60,45,90,0.22); transform: rotate(var(--t)); text-decoration: none; transition: transform 0.18s ease, box-shadow 0.18s ease; position: relative; }
+.pw__pola:hover { transform: rotate(0deg) translateY(-4px) scale(1.03); box-shadow: 0 26px 50px rgba(60,45,90,0.3); z-index: 2; }
+.pw__pin { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); width: 16px; height: 16px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #ff8a8a, #d12b2b); box-shadow: 0 4px 7px rgba(0,0,0,0.35); }
+.pw__photo { display: block; width: 100%; height: 226px; background: #ddd center/cover no-repeat; }
+.pw__cap { display: flex; align-items: center; gap: 9px; padding: 11px 4px 13px; }
+.pw__av { flex: 0 0 auto; width: 32px; height: 32px; border-radius: 50%; background: #ccc center/cover no-repeat; box-shadow: 0 0 0 2px #fff, 0 2px 5px rgba(0,0,0,0.18); }
+.pw__who { min-width: 0; text-align: left; }
+.pw__who b { display: block; font-size: 13px; font-weight: 600; color: #2a2342; line-height: 1.15; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pw__who small { display: block; font-size: 11px; color: #8a7fa0; }
+
+/* ---------- B. Rounded tiles ---------- */
+.rt { padding: 30px 40px 42px; }
+.rt__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 18px; }
+.rt__tile { position: relative; aspect-ratio: 4 / 5; border-radius: 22px; overflow: hidden; background: #ddd center/cover no-repeat; box-shadow: 0 14px 30px rgba(0,0,0,0.28); text-decoration: none; transition: transform 0.18s ease; }
+.rt__tile:hover { transform: translateY(-4px); }
+.rt__scrim { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 42%); }
+.rt__chip { position: absolute; left: 12px; right: 12px; bottom: 12px; z-index: 2; }
+
+/* ---------- C. Mosaic wall (clean masonry) ---------- */
+.mw { padding: 30px 40px 42px; }
+.mw__grid { column-count: 4; column-gap: 14px; }
+.mw__tile { position: relative; display: block; width: 100%; margin-bottom: 14px; border-radius: 16px; overflow: hidden; background: #ddd center/cover no-repeat; box-shadow: 0 12px 26px rgba(0,0,0,0.3); text-decoration: none; break-inside: avoid; transition: transform 0.18s ease; }
+.mw__tile:hover { transform: scale(1.02); }
+.mw__scrim { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.62) 0%, transparent 46%); }
+.mw__chip { position: absolute; left: 11px; right: 11px; bottom: 11px; z-index: 2; }
+@media (max-width: 900px) { .mw__grid { column-count: 3; } }
+
+/* ---------- D. Scattered photo wall (refined) ---------- */
+.sw { padding: 34px 50px 60px; }
+.sw__board { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; padding-top: 8px; }
+.sw__photo { position: relative; transform: rotate(var(--t)); transition: transform 0.2s ease; }
+.sw__photo:hover { transform: rotate(0deg) translateY(-6px) scale(1.04); z-index: 30 !important; }
+.sw__tape { position: absolute; top: -10px; left: 50%; transform: translateX(-50%) rotate(-4deg); width: 60px; height: 19px; border-radius: 1px; opacity: 0.72; z-index: 2; box-shadow: 0 1px 2px rgba(0,0,0,0.08); }
+.sw__tape::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(255,255,255,0.35), transparent 40%, rgba(255,255,255,0.25)); }
+.sw__img { display: block; width: 100%; aspect-ratio: 4 / 5; background: #ccc center/cover no-repeat; border-radius: 14px; box-shadow: 0 20px 38px rgba(50,38,80,0.28), 0 3px 8px rgba(50,38,80,0.16); }
+.sw__tag { position: absolute; left: 9px; bottom: -17px; z-index: 4; display: flex; align-items: center; gap: 8px; background: #fff; border-radius: 999px; padding: 5px 13px 5px 5px; box-shadow: 0 9px 20px rgba(50,38,80,0.22); }
+.sw__tag-av { flex: 0 0 auto; width: 28px; height: 28px; border-radius: 50%; background: #ccc center/cover no-repeat; }
+.sw__tag-who { min-width: 0; }
+.sw__tag-who b { display: block; font-size: 12px; font-weight: 600; color: #2a2342; line-height: 1.1; white-space: nowrap; }
+.sw__tag-who small { display: block; font-size: 10px; color: #8a7fa0; }
+
+.cst-foot { max-width: 1180px; margin: 34px auto 0; padding-top: 22px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 14px; color: rgba(255,255,255,0.55); }
+
+@media (max-width: 760px) { .cst { padding: 24px 14px 60px; } .mw__grid { column-count: 2; } }

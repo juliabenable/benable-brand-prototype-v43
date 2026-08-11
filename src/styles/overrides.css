@@ -1,0 +1,138 @@
+/* Local overrides + reset. Production CSS loads first; this patches collisions
+   caused by stripping Svelte scoped suffixes. */
+
+*, *::before, *::after { box-sizing: border-box; }
+/* Production sets html/body to height: 100% which prevents scrolling when our
+   React tree (e.g. the wrap-up tab) exceeds the viewport. Allow scrolling. */
+html, body, #root { min-height: 100%; height: auto; margin: 0; }
+
+/* The captured Svelte chrome (.brand-dashboard > .dashboard-body) is locked to
+   100vh with overflow: hidden — clips any tall content we render inside.
+   Relax it whenever the wrap-up panel OR the create-campaign brief-review
+   step OR the creator-matching step is rendered. Pin the sidebar so it
+   stays visible while the inner content scrolls. */
+.brand-dashboard:has(.wu),
+.brand-dashboard:has(.wu) .dashboard-body,
+.brand-dashboard:has(.draft-review-root),
+.brand-dashboard:has(.draft-review-root) .dashboard-body,
+.brand-dashboard:has(.cp-root),
+.brand-dashboard:has(.cp-root) .dashboard-body {
+  height: auto !important;
+  overflow: visible !important;
+  min-height: 100%;
+}
+.brand-dashboard:has(.wu) aside.sidebar,
+.brand-dashboard:has(.draft-review-root) aside.sidebar,
+.brand-dashboard:has(.cp-root) aside.sidebar {
+  position: sticky !important;
+  top: 0 !important;
+  align-self: start !important;
+  height: 100vh !important;
+  max-height: 100vh !important;
+  overflow-y: auto !important;
+}
+.brand-dashboard:has(.wu) aside.sidebar .sidebar-shell,
+.brand-dashboard:has(.draft-review-root) aside.sidebar .sidebar-shell,
+.brand-dashboard:has(.cp-root) aside.sidebar .sidebar-shell {
+  height: 100vh !important;
+  max-height: 100vh !important;
+}
+
+/* Inside the brief-review page itself the captured Svelte CSS also sets
+   .workspace-content / .workflow-page / .workspace-content-shell etc to
+   100% height with overflow:hidden|auto — that double-lock prevents
+   .draft-review-root (3000+ px tall) from being visible. Relax them. */
+.brand-dashboard:has(.draft-review-root) .workspace-content,
+.brand-dashboard:has(.draft-review-root) .workspace-content-shell,
+.brand-dashboard:has(.draft-review-root) .workflow-page,
+.brand-dashboard:has(.draft-review-root) .workspace-grid,
+.brand-dashboard:has(.cp-root) .workspace-content,
+.brand-dashboard:has(.cp-root) .workspace-content-shell,
+.brand-dashboard:has(.cp-root) .workflow-page,
+.brand-dashboard:has(.cp-root) .workspace-grid {
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+body {
+  font-family: -apple-system, "system-ui", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: #fff;
+  color: #1a1a1a;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; }
+
+/* ---------------------------------------------------------------- */
+/* Sidebar coming-soon pill: production scopes this rule via svelte- */
+/* hash but a later page-level rule won the cascade after stripping. */
+/* Restore the small sidebar variant explicitly.                     */
+/* ---------------------------------------------------------------- */
+.nav-list .coming-soon-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 0 auto;
+  padding: 2px 6px;
+  border: 0;
+  border-radius: 999px;
+  background: rgb(245, 245, 243);
+  color: rgba(107, 114, 128, 0.6);
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Ensure nav-label fills remaining space and truncates gracefully. */
+.nav-item .nav-label {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Brand avatar fallback values — production sets these via component-scoped
+   custom properties; provide defaults so the sidebar Pikora avatar renders. */
+:root {
+  --brand-avatar-size: 28px;
+  --brand-avatar-bg: rgb(245, 245, 243);
+  --brand-avatar-color: #1a1a1a;
+  --brand-avatar-shadow: 0 1px 2px rgba(0,0,0,.04);
+  --brand-avatar-border: 1px solid rgba(26,26,26,.06);
+  --brand-avatar-image-bg: transparent;
+  --brand-avatar-image-fit: cover;
+  --brand-avatar-image-padding: 0;
+  --brand-avatar-fallback-size: 12px;
+}
+
+/* Account menu popover: production uses `position: absolute` inside the
+   sidebar-secondary block. Our React popover renders outside that block, so
+   make it position itself near the brand card. */
+.brand-dashboard .account-menu {
+  position: fixed;
+  bottom: 64px;
+  left: 16px;
+  z-index: 50;
+  width: 220px;
+  max-width: calc(100vw - 32px);
+}
+
+/* React wrapper divs around dangerouslySetInnerHTML break the production
+   layout (the grid expects <aside> and <main> as direct children). Make the
+   wrappers transparent to layout so production CSS works unchanged. */
+.dashboard-body > div[data-shell-slot] {
+  display: contents;
+}
+
+/* Collision fix: a later production rule
+   `.compose-card, .chart-card, .panel-card, .table-card { padding: 20px }`
+   (from the alerts/intelligence surface set) also matches the campaigns
+   list `.table-card`, which originally had NO padding. That 20px insets
+   the table from the card border and breaks the edge-to-edge header band.
+   Scope the campaigns table card back to zero padding (the table fills
+   the card; the rounded corners + overflow:hidden clip it). */
+.campaigns-section .table-card { padding: 0; }

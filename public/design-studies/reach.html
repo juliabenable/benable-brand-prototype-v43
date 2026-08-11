@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reach — editorial split · design study</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #14111f; color: #fff; font-family: 'Inter', system-ui, sans-serif; min-height: 100vh; }
+    .page { max-width: 1300px; margin: 0 auto; padding: 36px 28px 80px; }
+    .back { display: inline-block; font-size: 13px; color: #b4adc8; text-decoration: none; margin-bottom: 22px; opacity: 0.7; }
+    .back:hover { opacity: 1; color: #fff; }
+    .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #b06a9a; margin-bottom: 8px; }
+    h1 { font-family: 'Fraunces', serif; font-weight: 600; font-size: 36px; letter-spacing: -0.015em; line-height: 1.05; margin: 0 0 10px; color: #fff; }
+    .lead { font-size: 15px; color: #b4adc8; max-width: 760px; line-height: 1.55; margin: 0 0 32px; }
+    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; }
+    @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+    .study { position: relative; border-radius: 22px; overflow: hidden; aspect-ratio: 4 / 3; display: flex; box-shadow: 0 16px 44px rgba(0,0,0,0.36); }
+    .study__lbl { position: absolute; top: 14px; left: 16px; z-index: 20; display: inline-flex; align-items: center; gap: 8px; padding: 4px 12px 4px 4px; border-radius: 999px; background: rgba(0,0,0,0.18); backdrop-filter: blur(6px); font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.92); letter-spacing: 0.04em; }
+    .study__lbl .dot { width: 22px; height: 22px; border-radius: 50%; background: linear-gradient(135deg, #ff6fae, #a06bff); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-weight: 800; font-size: 12px; }
+    .study__lbl.lbl--ref .dot { background: rgba(255,255,255,0.25); }
+
+    /* Both mockups use Reach's actual gradient (grad b in the deck) */
+    .slide-bg { background: linear-gradient(135deg, #e7e9ff 0%, #ffe0ee 52%, #fff0db 100%); color: #2a2342; }
+    .s-eyebrow { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #b06a9a; }
+    .accent { background: linear-gradient(120deg, #ff6fae, #a06bff 70%); -webkit-background-clip: text; background-clip: text; color: transparent; display: inline-block; padding-bottom: 0.06em; }
+
+    /* ───── Heart of dots (compact mockup) ───── */
+    .heart-wrap { position: relative; width: 100%; aspect-ratio: 1.2 / 1; }
+    .heart-wrap svg { width: 100%; height: 100%; display: block; }
+
+    /* ───── CURRENT (centered stack) ───── */
+    .study--current { padding: 40px 30px; flex-direction: column; align-items: center; justify-content: flex-start; text-align: center; gap: 8px; }
+    .study--current .h2 { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 36px; letter-spacing: -0.025em; line-height: 1.05; margin: 4px 0 0; max-width: 90%; }
+    .study--current .heart-wrap { width: 200px; height: 150px; margin-top: 4px; }
+    .study--current .sub { font-size: 11px; color: #6b6080; margin: 0; }
+    .study--current .q { font-family: 'Fraunces', serif; font-size: 13px; line-height: 1.4; color: #2a2342; font-weight: 500; max-width: 75%; padding-top: 8px; margin-top: 4px; border-top: 1px solid rgba(120,92,160,0.18); }
+    .study--current .qcite { font-family: 'Inter', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #8a7fa0; margin-top: 6px; display: block; }
+
+    /* ───── PROPOSED (editorial split) ───── */
+    .study--proposed { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 24px; padding: 36px 32px; align-items: center; }
+    .study--proposed .col-left { display: flex; flex-direction: column; gap: 12px; }
+    .study--proposed .num { font-family: 'Fraunces', serif; font-weight: 800; font-size: clamp(80px, 11vw, 140px); line-height: 0.9; letter-spacing: -0.04em; margin: -4px 0; background: linear-gradient(120deg, #ff6fae, #a06bff 70%); -webkit-background-clip: text; background-clip: text; color: transparent; padding-bottom: 0.04em; }
+    .study--proposed .num-lbl { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: #2a2342; letter-spacing: -0.005em; line-height: 1.25; margin-top: -4px; }
+    .study--proposed .q { font-family: 'Fraunces', serif; font-size: 13px; line-height: 1.4; color: #2a2342; font-weight: 500; padding-top: 12px; margin-top: 10px; border-top: 1px solid rgba(120,92,160,0.2); max-width: 280px; }
+    .study--proposed .qcite { font-family: 'Inter', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #8a7fa0; margin-top: 6px; display: block; }
+    .study--proposed .col-right { display: flex; align-items: center; justify-content: center; }
+    .study--proposed .heart-wrap { width: 100%; max-width: 280px; }
+
+    .notes { margin-top: 36px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; }
+    @media (max-width: 900px) { .notes { grid-template-columns: 1fr; } }
+    .note h3 { font-family: 'Fraunces', serif; font-weight: 600; font-size: 17px; color: #fff; margin: 0 0 8px; }
+    .note p { font-size: 14px; line-height: 1.55; color: #a59aba; margin: 0 0 10px; }
+    .note ul { margin: 0; padding-left: 18px; }
+    .note li { font-size: 14px; line-height: 1.55; color: #a59aba; margin-bottom: 4px; }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <a class="back" href="./">← All design studies</a>
+    <div class="eyebrow">Slide 3 · Reach</div>
+    <h1>Editorial-stack split</h1>
+    <p class="lead">Take the dotted heart out of the centered stack and give it its own column. Let the brand-awareness number be the hero, sized way up. Quote sits under the number, never crowding the heart.</p>
+
+    <div class="grid">
+      <!-- ─────── CURRENT ─────── -->
+      <div class="study slide-bg study--current">
+        <span class="study__lbl lbl--ref"><span class="dot">A</span>Current (live)</span>
+        <span class="s-eyebrow" style="margin-top:18px">Brand awareness</span>
+        <div class="h2">Over <span class="accent">~5.5K people</span><br>noticed your brand.</div>
+        <div class="heart-wrap">
+          <svg viewBox="0 0 200 150" aria-hidden="true">
+            <defs><radialGradient id="d1"><stop offset="0%" stop-color="#ffb1c8"/><stop offset="60%" stop-color="#ff7d9b"/><stop offset="100%" stop-color="#f0589a"/></radialGradient></defs>
+            <g fill="url(#d1)">
+              <!-- compact heart dot pattern -->
+              <!-- generated programmatically; here a dense approximation -->
+              <!-- a small heart silhouette via path stroke + repeating tiny circles is overkill;
+                   instead, render a single heart shape with the dot texture in mind -->
+              <path d="M100 130 C 50 90, 18 60, 30 35 C 38 18, 65 16, 80 32 C 90 42, 100 56, 100 56 C 100 56, 110 42, 120 32 C 135 16, 162 18, 170 35 C 182 60, 150 90, 100 130 Z" />
+            </g>
+          </svg>
+        </div>
+        <p class="sub">each dot is one person</p>
+        <p class="q">Awareness is the foundation of every marketing funnel. Every impression compounds — they're the seeds of tomorrow's customers.<span class="qcite">— Marketing Lab, Brand Growth Report</span></p>
+      </div>
+
+      <!-- ─────── PROPOSED ─────── -->
+      <div class="study slide-bg study--proposed">
+        <span class="study__lbl"><span class="dot">B</span>Proposed · editorial split</span>
+        <div class="col-left">
+          <span class="s-eyebrow">Brand awareness</span>
+          <div class="num">~5.5K</div>
+          <div class="num-lbl">people noticed<br>your brand</div>
+          <p class="q">Awareness is the foundation of every marketing funnel. Every impression compounds — they're the seeds of tomorrow's customers.<span class="qcite">— Marketing Lab</span></p>
+        </div>
+        <div class="col-right">
+          <div class="heart-wrap">
+            <svg viewBox="0 0 200 150" aria-hidden="true">
+              <defs><radialGradient id="d2"><stop offset="0%" stop-color="#ffb1c8"/><stop offset="60%" stop-color="#ff7d9b"/><stop offset="100%" stop-color="#f0589a"/></radialGradient></defs>
+              <g fill="url(#d2)">
+                <path d="M100 130 C 50 90, 18 60, 30 35 C 38 18, 65 16, 80 32 C 90 42, 100 56, 100 56 C 100 56, 110 42, 120 32 C 135 16, 162 18, 170 35 C 182 60, 150 90, 100 130 Z" />
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <div class="note">
+        <h3>What changes</h3>
+        <ul>
+          <li>The reach number — <strong>5.5K</strong> — becomes the hero. Fraunces 800 italic-ish at ~120px, the same gradient as the current "is ready" accent.</li>
+          <li>The heart moves to its own right column, taking the full right height. It gets to breathe.</li>
+          <li>Quote sits supportingly under the number on the left, with a thin top divider. It can be longer/more substantial without crowding the heart.</li>
+          <li>Headline ("noticed your brand") becomes a short tag under the number, not a competing element.</li>
+        </ul>
+      </div>
+      <div class="note">
+        <h3>Why</h3>
+        <p>Right now five elements stack vertically on a fixed 720px slide. Each one competes — and the heart and the quote both want to be the closer. The split lets each element have a clear role: <strong>number on the left = "here's the headline stat,"</strong> <strong>heart on the right = "here's what that number feels like."</strong></p>
+        <p>It also reads like a real editorial page, which matches the direction the rest of the deck (recap, wrap-close, Katie note) is going.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
