@@ -652,3 +652,16 @@ export const REVIEW = {
   },
 };
 export const reviewFor = (mode) => REVIEW[mode] || {};
+
+/* ---- declined invites (Aug 11, Julia) — shown to brands ONLY when Katie
+   flips the per-brand admin switch (demo: the DECLINED pill toggle).
+   Who + when, never why — reasons stay with Benable (decline-note privacy
+   rule); every entry carries the replacement story, never a dead end. */
+export const DECLINED = {
+  local: [
+    { name: 'Amara Cole', handle: '@amaracole', photo: 'Amara', when: 'Jul 18', note: 'Replacement matched — Lena joined this campaign' },
+  ],
+  product: [
+    { name: 'Lena Ortiz', handle: '@lenaortiz', photo: 'Lena', when: 'Jul 18', note: 'Replacement matched — Amara joined this campaign' },
+  ],
+};

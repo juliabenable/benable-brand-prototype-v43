@@ -29,6 +29,8 @@ const F_OPTS = { edu: 'b', stage: 'dots', act: 'calm', late: 'quiet', icons: 'of
 let persistedToggles = { head: 'grey', ship: 'head', table: 'k', ring: 'solid' };
 /* review direction (v43): 'chat' = the conversation (default) · 'sheet' = v42's sheet */
 let persistedRui = 'chat';
+/* Katie's per-brand admin switch: declined invites stay hidden by default */
+let persistedDeclined = false;
 
 /* Demo deep-links (states-review gallery): ?day=9&mode=local&table=k&head=white
    &ship=head&ring=badge seed the demo state; ?embed=1 hides the demo chrome.
@@ -37,6 +39,7 @@ const Q = new URLSearchParams(window.location.search);
 const EMBED = Q.has('embed');
 if (Q.get('mode') === 'local') persistedMode = 'local';
 if (Q.get('rui') === 'sheet') persistedRui = 'sheet';
+if (Q.has('declined')) persistedDeclined = Q.get('declined') !== '0';
 for (const k of ['table', 'head', 'ship', 'ring']) if (Q.has(k)) persistedToggles = { ...persistedToggles, [k]: Q.get(k) };
 if (Q.has('day')) {
   const qDays = persistedMode === 'local' ? DAYS.filter((d) => !d.productOnly) : DAYS;
@@ -63,6 +66,9 @@ export default function CampaignPulse() {
      Chat opens by default; the v42 sheet stays one click away. */
   const [rui, setRui] = useState(persistedRui);
   useEffect(() => { persistedRui = rui; }, [rui]);
+  /* declined-invites visibility — Katie's admin switch, off by default */
+  const [showDeclined, setShowDeclined] = useState(persistedDeclined);
+  useEffect(() => { persistedDeclined = showDeclined; }, [showDeclined]);
   const rootRef = useRef(null);
   // some days only exist for one collab type (day 10 = CSV shipping)
   const days = mode === 'local' ? DAYS.filter((d) => !d.productOnly) : DAYS;
@@ -70,8 +76,8 @@ export default function CampaignPulse() {
   /* day-16 recap/upNext copy differs by reviewer — resolve the variant */
   const pickR = (v) => (v && v.byReview ? (v[review] ?? v.benable) : v);
   const scene = mode === 'local'
-    ? { ...base, mode, review, rui, upNext: pickR(LOCAL.upNext[base.day] ?? base.upNext), recap: pickR(LOCAL.recap[base.day] ?? base.recap) }
-    : { ...base, mode, review, rui, upNext: pickR(base.upNext), recap: pickR(base.recap) };
+    ? { ...base, mode, review, rui, showDeclined, upNext: pickR(LOCAL.upNext[base.day] ?? base.upNext), recap: pickR(LOCAL.recap[base.day] ?? base.recap) }
+    : { ...base, mode, review, rui, showDeclined, upNext: pickR(base.upNext), recap: pickR(base.recap) };
   const phase = scene.phase; // 'sourcing' | 'review' | undefined (live dashboard)
 
   const switchMode = (m) => {
@@ -171,6 +177,14 @@ export default function CampaignPulse() {
         </button>
         <button type="button" className={review === 'brand' ? 'cp-scrub-day cp-scrub-day--active' : 'cp-scrub-day'} onClick={() => switchReview('brand')}>
           Brand
+        </button>
+        <span className="cp-mode-sep" aria-hidden />
+        <span className="cp-scrub-tag">DECLINED</span>
+        <button type="button" className={!showDeclined ? 'cp-scrub-day cp-scrub-day--active' : 'cp-scrub-day'} onClick={() => setShowDeclined(false)}>
+          Hidden
+        </button>
+        <button type="button" className={showDeclined ? 'cp-scrub-day cp-scrub-day--active' : 'cp-scrub-day'} onClick={() => setShowDeclined(true)}>
+          Shown
         </button>
         <span className="cp-mode-sep" aria-hidden />
         <span className="cp-scrub-tag">REVIEW UI</span>

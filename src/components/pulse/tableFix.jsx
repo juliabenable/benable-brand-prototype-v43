@@ -1,5 +1,5 @@
 import { useEffect, useReducer, useState } from 'react';
-import { crewFor, PHOTOS, TIMELINES, CASTING_TIMELINE, STAGE_LABELS, SPOTS, LOCAL, NEXT_HINTS } from './pulseData.js';
+import { crewFor, PHOTOS, TIMELINES, CASTING_TIMELINE, STAGE_LABELS, SPOTS, LOCAL, NEXT_HINTS, DECLINED } from './pulseData.js';
 import { stageOf, stagesFor, AM_FILTER_LABEL, ActionModal } from './amine.jsx';
 import { ReviewSheet, ReviewPopup, reviewPopupDue, dismissReviewPopup, isReviewRow, reviewRowFace, reviewNeeds } from './review.jsx';
 import { ChatReview } from './reviewChat.jsx';
@@ -65,6 +65,8 @@ export default function FixedTable({ scene, rows, filter, onFilter, openCrew, to
   /* login-moment pop-up when drafts wait on the brand (rematch-pattern twin,
      content-review study @4218) — once per session, never in the gallery */
   const [reviewPopup, setReviewPopup] = useState(false);
+  /* declined-invites fold (Katie's switch) — collapsed by default */
+  const [declOpen, setDeclOpen] = useState(false);
   useEffect(() => {
     if (reviewPopupDue(scene, crewAll)) setReviewPopup(true);
   }, [scene.day, scene.mode, scene.review]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -511,6 +513,37 @@ export default function FixedTable({ scene, rows, filter, onFilter, openCrew, to
         </>
       )}
 
+      {/* ---- declined invites (Aug 11, Julia) — the quiet fold at the table's
+           bottom, rendered ONLY when Katie's per-brand switch is on. Same
+           spirit as the portal's "not a good fit" line, in tracker language:
+           who + when, never why; every entry reads as motion. */}
+      {scene.showDeclined && !filtered && (DECLINED[scene.mode] ?? []).length > 0 && (
+        <>
+          <button type="button" className="tf-declline" aria-expanded={declOpen} onClick={() => setDeclOpen(!declOpen)}>
+            <span className={`tf-declchev${declOpen ? ' tf-declchev--open' : ''}`} aria-hidden>▾</span>
+            <span><b>{(DECLINED[scene.mode]).length} creator{(DECLINED[scene.mode]).length > 1 ? 's' : ''}</b> declined the invite</span>
+          </button>
+          <div className={`tf-drawer${declOpen ? ' tf-drawer--open' : ''}`} aria-hidden={!declOpen} inert={declOpen ? undefined : ''}>
+            <div className="tf-drawer-in">
+              {(DECLINED[scene.mode]).map((d) => (
+                <div key={d.handle} className="am-row tf-row tf-declrow">
+                  <span className="am-who">
+                    <span className="am-avatar tf-declava"><img src={PHOTOS[d.photo]} alt="" /></span>
+                    <span className="am-names">
+                      <span className="am-name">{d.name}</span>
+                      <span className="am-handle">{d.handle}</span>
+                    </span>
+                  </span>
+                  <span className="am-update"><LiveStatus status={{ type: 'static', phrases: [d.note] }} /></span>
+                  <span className="tf-chipslot"><span className="tf-gdot"><i style={{ background: '#d5d8d5' }} />Declined {d.when}</span></span>
+                  <span aria-hidden />
+                </div>
+              ))}
+              <p className="tf-declfoot">Why she declined stays with Benable — candid reasons sharpen your next match. Her spot was refilled automatically.</p>
+            </div>
+          </div>
+        </>
+      )}
 
       {modal?.kind === 'review' ? (
         scene.rui === 'chat'
