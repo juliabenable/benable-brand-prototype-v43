@@ -520,7 +520,7 @@ export default function FixedTable({ scene, rows, filter, onFilter, openCrew, to
       {scene.showDeclined && !filtered && (DECLINED[scene.mode] ?? []).length > 0 && (
         <>
           <button type="button" className="tf-declline" aria-expanded={declOpen} onClick={() => setDeclOpen(!declOpen)}>
-            <span>{(DECLINED[scene.mode]).length} creator{(DECLINED[scene.mode]).length > 1 ? 's' : ''} declined the invite</span>
+            <span>{(DECLINED[scene.mode]).length} creator{(DECLINED[scene.mode]).length > 1 ? 's' : ''} declined</span>
             <span className={`tf-declchev${declOpen ? ' tf-declchev--open' : ''}`} aria-hidden>▾</span>
           </button>
           <div className={`tf-drawer${declOpen ? ' tf-drawer--open' : ''}`} aria-hidden={!declOpen} inert={declOpen ? undefined : ''}>

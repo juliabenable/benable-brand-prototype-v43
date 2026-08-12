@@ -591,7 +591,6 @@
    who + when, never why — reasons stay with Benable; rows are the table's
    anatomy with the volume down, and every note reads as motion. */
 .tf-declline { display: flex; align-items: center; gap: 8px; width: 100%; text-align: left; border: none; background: none; cursor: pointer; font-family: inherit; font-size: 13px; color: #717171; padding: 13px 20px; border-top: 1px solid #f0f1f3; }
-.tf-declline:hover { color: #1c1c1c; background: #fcfcfd; }
 .tf-declline:focus { outline: none; }
 .tf-declline:focus-visible { outline: 2px solid #7a5cfa; outline-offset: -2px; border-radius: 6px; }
 .tf-declline b { color: #3c4046; font-weight: 600; }
