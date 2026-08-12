@@ -520,8 +520,8 @@ export default function FixedTable({ scene, rows, filter, onFilter, openCrew, to
       {scene.showDeclined && !filtered && (DECLINED[scene.mode] ?? []).length > 0 && (
         <>
           <button type="button" className="tf-declline" aria-expanded={declOpen} onClick={() => setDeclOpen(!declOpen)}>
+            <span>{(DECLINED[scene.mode]).length} creator{(DECLINED[scene.mode]).length > 1 ? 's' : ''} declined the invite</span>
             <span className={`tf-declchev${declOpen ? ' tf-declchev--open' : ''}`} aria-hidden>▾</span>
-            <span><b>{(DECLINED[scene.mode]).length} creator{(DECLINED[scene.mode]).length > 1 ? 's' : ''}</b> declined the invite</span>
           </button>
           <div className={`tf-drawer${declOpen ? ' tf-drawer--open' : ''}`} aria-hidden={!declOpen} inert={declOpen ? undefined : ''}>
             <div className="tf-drawer-in">
@@ -534,12 +534,11 @@ export default function FixedTable({ scene, rows, filter, onFilter, openCrew, to
                       <span className="am-handle">{d.handle}</span>
                     </span>
                   </span>
-                  <span className="am-update"><LiveStatus status={{ type: 'static', phrases: [d.note] }} /></span>
+                  <span className="am-update" aria-hidden />
                   <span className="tf-chipslot"><span className="tf-gdot"><i style={{ background: '#d5d8d5' }} />Declined {d.when}</span></span>
                   <span aria-hidden />
                 </div>
               ))}
-              <p className="tf-declfoot">Why she declined stays with Benable — candid reasons sharpen your next match. Her spot was refilled automatically.</p>
             </div>
           </div>
         </>

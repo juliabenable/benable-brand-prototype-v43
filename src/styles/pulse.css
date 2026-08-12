@@ -592,6 +592,8 @@
    anatomy with the volume down, and every note reads as motion. */
 .tf-declline { display: flex; align-items: center; gap: 8px; width: 100%; text-align: left; border: none; background: none; cursor: pointer; font-family: inherit; font-size: 13px; color: #717171; padding: 13px 20px; border-top: 1px solid #f0f1f3; }
 .tf-declline:hover { color: #1c1c1c; background: #fcfcfd; }
+.tf-declline:focus { outline: none; }
+.tf-declline:focus-visible { outline: 2px solid #7a5cfa; outline-offset: -2px; border-radius: 6px; }
 .tf-declline b { color: #3c4046; font-weight: 600; }
 .tf-declchev { display: inline-block; font-size: 10px; color: #9aa0a6; transition: transform 0.18s ease; }
 .tf-declchev--open { transform: rotate(180deg); }
@@ -600,5 +602,4 @@
 .tf-declava { filter: grayscale(1); opacity: 0.55; }
 .tf-declrow .am-name { color: #717171; }
 .tf-declrow .am-handle { color: #9aa0a6; }
-.tf-declrow .am-update .cp-live-fact { color: #9a9a9a; font-weight: 400; font-style: italic; }
-.tf-declfoot { margin: 0; padding: 11px 20px 15px; background: #fcfcfd; font-size: 12px; line-height: 1.55; color: #9aa0a6; }
+.tf-declrow:last-child { border-bottom: none; }

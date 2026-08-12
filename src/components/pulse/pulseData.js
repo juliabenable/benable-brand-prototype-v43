@@ -659,9 +659,9 @@ export const reviewFor = (mode) => REVIEW[mode] || {};
    rule); every entry carries the replacement story, never a dead end. */
 export const DECLINED = {
   local: [
-    { name: 'Amara Cole', handle: '@amaracole', photo: 'Amara', when: 'Jul 18', note: 'Replacement matched — Lena joined this campaign' },
+    { name: 'Amara Cole', handle: '@amaracole', photo: 'Amara', when: 'Jul 18' },
   ],
   product: [
-    { name: 'Lena Ortiz', handle: '@lenaortiz', photo: 'Lena', when: 'Jul 18', note: 'Replacement matched — Amara joined this campaign' },
+    { name: 'Lena Ortiz', handle: '@lenaortiz', photo: 'Lena', when: 'Jul 18' },
   ],
 };
