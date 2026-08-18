@@ -59,6 +59,18 @@ Inter (a National 2 Narrow toggle was built and REVERTED same hour — Julia).
 The stat row's "🚀 Campaign on schedule, up to 4 weeks faster than industry
 average" is v33 Tony copy (Jul 27), not from this round.
 
+**v43.2 (Aug 18) — Tony's FLAG-AN-ISSUE copy (PR #2 from brianbenable,
+squash-merged; PR #1 was a duplicate, closed).** The modal's negative path is
+no longer a change request to the creator — it's an issue report to Benable:
+footer CTA "Flag an issue", sheet title "Sorry about that, let's make it
+right", sub says the note goes to the Benable team (NOT the creator) who will
+"work out the best solution with the creator directly", CTA "Send to our
+team", decided rail "Issue flagged for our team — we'll review and keep you
+posted." The ⓘ one-change-round line and the re-film education are gone.
+⚠ MODEL CHANGE, flagged to Julia at merge time: this reverses the Aug 10
+decided rules "feedback goes straight to the creator · one included change
+round" for the modal UI — Chat still speaks the straight-to-her model.
+
 **v43 (Aug 10) — review direction B: THE CONVERSATION.** Iterated from v42 right after its Amine handoff (v42 stays frozen on direction A, the sheet). v43 explores Julia's "Insense-style" idea: the review is a chat with the creator — her post arrives as a message (9:16 card + caption in a creator bubble), Katie's team's brief check is a system line, and **the brand's reply IS the decision**: the composer opens pre-written with a warm acceptance (per-asset `accept` in REVIEW data) — "Approve & send" ships it as-is (editing it just personalizes it); picking a suggestion chip (or "Ask for a change instead") flips the same message into her ONE change round, button becomes "Send to {name}". All decided rules hold (no reject · nudges only · straight to her · can't send empty · edits-not-reshoots via the Katie line). `reviewChat.jsx` (`rvc-` CSS); demo pill gains **REVIEW UI · Chat | Sheet** (chat = v43 default, deep-link `?rui=sheet` for direction A; module-persisted). Thread auto-scrolls; decided posts show the sent purple bubble + status line; per-creator threads chain via "Next: Jade's tiktok →".
 
 **v42 (Aug 10) — fresh iteration base, snapshot of v41.** v41 was the Nisarg handoff pack (docs/HANDOFF.md + spec v2 + v37 migration notes) and stays frozen at its own URL — the docs/ files intentionally keep their v41 links. New work goes here.
