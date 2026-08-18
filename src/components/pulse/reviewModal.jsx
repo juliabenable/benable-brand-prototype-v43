@@ -23,15 +23,6 @@ import '../../styles/reviewModal.css';
 const B = import.meta.env.BASE_URL;
 const A = (p) => `${B}review/${p}`;
 
-/* Shared quick-fix chips, in the v6 sheet's order (Figma 12324:2042) —
-   same four fills as review.jsx's QUICK_FIXES, sequence per the mock. */
-const QUICK_FIXES_V6 = [
-  { label: 'Caption tweak', fill: 'Could the caption also mention …' },
-  { label: 'Different cover frame', fill: 'Could the cover be a different frame — maybe …' },
-  { label: 'Text on screen', fill: 'Could the on-screen text say … instead?' },
-  { label: 'Trim or reorder clips', fill: 'Could the clips be reordered so … opens?' },
-];
-
 /* Drafts carousel geometry: 85px thumbs, 10px gap, viewport to the panel edge. */
 const THUMB_STEP = 95;
 const CAROUSEL_VIEWPORT = 390;
@@ -402,12 +393,6 @@ export function ReviewModal({ scene, rows, initial, onClose, onDecide }) {
     confirmDecision('changes');
   };
 
-  /* chips fill the composer with a starter sentence; extra chips stack lines */
-  const fillChip = (fill) => {
-    setChangesText((t) => (t.trim() ? `${t.replace(/\s+$/, '')}\n${fill}` : fill));
-    changesRef.current?.focus();
-  };
-
   return createPortal(
     <div className="rvm">
       {celebrating ? (
@@ -651,14 +636,8 @@ export function ReviewModal({ scene, rows, initial, onClose, onDecide }) {
                       if (isEnter && !e.shiftKey) { e.preventDefault(); submitChanges(); }
                     }}
                   />
-                  {/* caption-aware suggestions + shared quick fixes, one flat wrap */}
-                  <div className="rvm-changes-chips">
-                    {[...(clip.suggestions ?? []), ...QUICK_FIXES_V6].map((chip) => (
-                      <button key={chip.label} type="button" className="rvm-changes-chip" onClick={() => fillChip(chip.fill)}>
-                        {chip.label}
-                      </button>
-                    ))}
-                  </div>
+                  {/* suggestion chips removed (Julia, Aug 17) — the note box
+                      stands alone; clip.suggestions still feed the Chat UI */}
                 </div>
                 <div className="rvm-changes-footer">
                   <p className="rvm-changes-meta">

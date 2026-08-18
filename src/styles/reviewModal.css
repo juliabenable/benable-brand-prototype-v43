@@ -1119,7 +1119,9 @@ body:has(.rvm) {
   right: 8px;
   bottom: 8px;
   width: 410px;
-  min-height: 532px;
+  /* 532px in the v6 mock held a two-row chip wrap; the chips were removed
+     (Julia, Aug 17) so the sheet closes up around the note box */
+  min-height: 460px;
   background: var(--default-bg-body);
   border-radius: 20px;
   overflow: clip;

@@ -1,7 +1,7 @@
-import { useReducer, useState } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 import { crewFor, PHOTOS, TIMELINES, CASTING_TIMELINE, STAGE_LABELS, SPOTS, LOCAL, NEXT_HINTS, DECLINED } from './pulseData.js';
 import { stageOf, stagesFor, AM_FILTER_LABEL, ActionModal } from './amine.jsx';
-import { assetsOf, isReviewRow, reviewRowFace, reviewNeeds } from './review.jsx';
+import { ReviewPopup, reviewPopupDue, dismissReviewPopup, assetsOf, isReviewRow, reviewRowFace, reviewNeeds } from './review.jsx';
 import { ChatReview } from './reviewChat.jsx';
 import { ReviewModal } from './reviewModal.jsx';
 import LiveStatus from './LiveStatus.jsx';
@@ -65,8 +65,12 @@ export default function FixedTable({ scene, rows, filter, onFilter, openCrew, to
   const [sheetDone, setSheetDone] = useState(false);
   /* declined-invites fold (Katie's switch) — collapsed by default */
   const [declOpen, setDeclOpen] = useState(false);
-  /* the login-moment review pop-up was removed (Julia, Aug 17) — the amber
-     row CTAs are the only entry into the review */
+  /* login-moment pop-up when drafts wait on the brand (rematch-pattern twin,
+     content-review study @4218) — once per session, never in the gallery */
+  const [reviewPopup, setReviewPopup] = useState(false);
+  useEffect(() => {
+    if (reviewPopupDue(scene, crewAll)) setReviewPopup(true);
+  }, [scene.day, scene.mode, scene.review]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const inviting = crewAll.some((c) => !c.mystery && c.stage === 0 && !c.found);
   const shipDay = crewAll.some((c) => c.ship);
@@ -563,6 +567,14 @@ export default function FixedTable({ scene, rows, filter, onFilter, openCrew, to
       ) : modal ? (
         <ActionModal act={modal} onClose={() => setModal(null)} />
       ) : null}
+      {reviewPopup && (
+        <ReviewPopup
+          scene={scene}
+          rows={crewAll}
+          onReview={(name) => { dismissReviewPopup(); setReviewPopup(false); setModal({ kind: 'review', name }); }}
+          onLater={() => { dismissReviewPopup(); setReviewPopup(false); }}
+        />
+      )}
     </section>
   );
 }

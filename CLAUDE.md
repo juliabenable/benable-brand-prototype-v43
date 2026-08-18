@@ -27,13 +27,15 @@ Deliberate deltas from his repo: his Dashboard/data stay behind (v43's table
 is the dashboard), his 5-draft Emery carousel demo has no v43 data twin (max
 2 drafts/creator), celebration counts derive from asset states.
 
-**v43.1 review round (Julia, Aug 17, same day):** login ReviewPopup REMOVED
-and the **SHEET direction REMOVED** — REVIEW UI is now **Modal | Chat**
-(`?rui=modal|chat`; the v42 sheet lives on in frozen v42). review.jsx is
-pruned to the shared MODEL layer only (QUICK_FIXES, who-reviews config,
-assetsOf/rowReviewState/reviewNeeds/reviewRowFace) — no components; the
-sheet/popup rv- CSS was pruned from pulse.css (the rv- classes reviewChat
-still wears were kept). The amber row CTAs are the only review entry. Decided rows keep NO cta (unchanged), but
+**v43.1 review round (Julia, Aug 17, same day):** the **SHEET direction
+REMOVED** — REVIEW UI is now **Modal | Chat** (`?rui=modal|chat`; the v42
+sheet lives on in frozen v42). review.jsx keeps the shared MODEL layer
+(QUICK_FIXES, who-reviews config, assetsOf/rowReviewState/reviewNeeds/
+reviewRowFace) + the login **ReviewPopup** — removed then RESTORED the same
+day (Julia); its rv-pop CSS is back in pulse.css. The modal's
+request-changes sheet lost ALL its suggestion chips (Julia) — the note box
+stands alone, card min-height 532→460; `clip.suggestions` still feed the
+Chat composer. Sheet-only rv- CSS stays pruned. Decided rows keep NO cta (unchanged), but
 the row drawer's current stage-history step now carries a quiet
 **"See what you sent ↗"** tf-histlink (renders once ≥1 asset is decided;
 reopens the modal read-only w/ status rails + feedback). Design-QA pass ran
