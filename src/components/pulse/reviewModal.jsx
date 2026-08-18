@@ -627,7 +627,7 @@ export function ReviewModal({ scene, rows, initial, onClose, onDecide }) {
                   <textarea
                     ref={changesRef}
                     className="rvm-changes-textarea"
-                    placeholder={`Add your feedback — we’ll pass it straight to ${name}`}
+                    placeholder="Hello world"
                     value={changesText}
                     autoFocus
                     onChange={(e) => setChangesText(e.target.value)}
