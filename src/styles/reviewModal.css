@@ -1101,7 +1101,7 @@ body:has(.rvm) {
   color: #717171;
 }
 
-/* ---------- Request changes prompt (Figma 12324:2042, v6) ---------- */
+/* ---------- Flag issue prompt (Figma 12324:2042, v6) ---------- */
 
 .rvm-changes-scrim {
   position: absolute;
@@ -1119,8 +1119,7 @@ body:has(.rvm) {
   right: 8px;
   bottom: 8px;
   width: 410px;
-  /* 532px in the v6 mock held a two-row chip wrap; the chips were removed
-     (Julia, Aug 17) so the sheet closes up around the note box */
+  /* Chips and the footer note are removed, so the sheet closes up around the note box. */
   min-height: 460px;
   background: var(--default-bg-body);
   border-radius: 20px;
@@ -1214,31 +1213,7 @@ body:has(.rvm) {
   border-color: var(--default-border-strong, #1c1c1c);
 }
 
-.rvm-changes-chips {
-  margin-top: 12px;
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  align-items: center;
-}
-
-.rvm-changes-chip {
-  padding: 6px 10px;
-  background: #fff;
-  border: 1px solid var(--default-border-subtle);
-  border-radius: 24px;
-  font-size: 12px;
-  line-height: normal;
-  color: var(--default-text-medium);
-  white-space: nowrap;
-}
-
-.rvm-changes-chip:hover {
-  background: #f7f7f7;
-}
-
-/* Full-bleed footer rail: info line above the send CTA (v6) */
+/* Full-bleed footer rail with the send CTA (v6) */
 .rvm-changes-footer {
   margin-top: auto;
   width: 100%;
@@ -1249,20 +1224,6 @@ body:has(.rvm) {
   flex-direction: column;
   align-items: center;
   gap: 16px;
-}
-
-.rvm-changes-meta {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--default-text-base);
-}
-
-.rvm-changes-meta-icon {
-  width: 14px;
-  height: 14px;
 }
 
 .rvm-changes-send {
