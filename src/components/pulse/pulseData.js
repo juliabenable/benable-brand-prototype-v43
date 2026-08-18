@@ -577,12 +577,18 @@ export const DAYS = [
 export const REVIEW = {
   /* a creator can submit SEVERAL posts (reel + story + TikTok…) — each asset
      is decided on its own; the crew row aggregates. All social = 9:16.
-     Keyed by collab type: the posts (and the pre-checks) differ. */
+     Keyed by collab type: the posts (and the pre-checks) differ.
+     `src`/`poster`/`capLines` feed the REVIEW UI · Modal (reviewModal.jsx):
+     real 8s AI UGC footage from Amine's review-content repo as stand-ins
+     (public/review/), captions as plain lines — @/#tokens get toned at
+     render. The chat/sheet directions keep reading `caption`. */
   local: {
     Maya: {
       assets: [
         {
           id: 'maya-reel', kind: 'IG Reel', len: '0:38', uploaded: 'yesterday',
+          src: `${B}review/videos/emery-1.mp4`, poster: `${B}review/posters/emery-1.jpg`,
+          capLines: ['Treated myself to the dreamiest facial at @trilogyspas — the full experience in one reel 🧖‍♀️', '#trilogypartner'],
           caption: '“Treated myself to the dreamiest facial at @trilogyspas — the full experience in one reel 🧖‍♀️ #trilogypartner”',
           checks: ['Mentions Trilogy by name', 'Shows the treatment room', 'Discloses the partnership', 'Sounds like her — no script'],
           /* caption-aware suggestions — a chip click pre-fills the note */
@@ -595,6 +601,8 @@ export const REVIEW = {
         },
         {
           id: 'maya-story', kind: 'IG Story', len: '3 frames', uploaded: 'yesterday',
+          src: `${B}review/videos/emery-2.mp4`, poster: `${B}review/posters/emery-2.jpg`,
+          capLines: ['Come with me for a reset day 🧖‍♀️', 'Link sticker to your booking page on frame 3'],
           caption: '“Come with me for a reset day 🧖‍♀️” — link sticker to your booking page on frame 3',
           checks: ['Tags @trilogyspas', 'Link sticker to booking page', 'Discloses the partnership'],
           suggestions: [
@@ -609,6 +617,8 @@ export const REVIEW = {
       assets: [
         {
           id: 'jade-tt', kind: 'TikTok', len: '0:24', uploaded: 'this morning',
+          src: `${B}review/videos/quinn-1.mp4`, poster: `${B}review/posters/quinn-1.jpg`,
+          capLines: ['POV: your Sunday reset at @trilogyspas 💆‍♀️ — wait for the steam room'],
           caption: '“POV: your Sunday reset at @trilogyspas 💆‍♀️ — wait for the steam room”',
           checks: ['Mentions Trilogy by name', 'Shows the space', 'Discloses the partnership', 'Tags the location'],
           suggestions: [
@@ -625,6 +635,8 @@ export const REVIEW = {
       assets: [
         {
           id: 'jade-reel', kind: 'IG Reel', len: '0:31', uploaded: 'yesterday',
+          src: `${B}review/videos/jasper-1.mp4`, poster: `${B}review/posters/jasper-1.jpg`,
+          capLines: ['Golden hour, zero white cast ☀️ my new go-to tinted SPF from @pikora', '#pikorapartner'],
           caption: '“Golden hour, zero white cast ☀️ my new go-to tinted SPF from @pikora #pikorapartner”',
           checks: ['Shows the product clearly', 'Names Pikora', 'Discloses the partnership', 'Sounds like her — no script'],
           suggestions: [
@@ -639,6 +651,8 @@ export const REVIEW = {
       assets: [
         {
           id: 'priya-story', kind: 'IG Story', len: '3 frames', uploaded: 'this morning',
+          src: `${B}review/videos/quinn-2.mp4`, poster: `${B}review/posters/quinn-2.jpg`,
+          capLines: ['my honest AM routine ft. the tinted SPF 🧴', 'Link sticker to your shop on frame 3'],
           caption: '“my honest AM routine ft. the tinted SPF 🧴” — link sticker to your shop on frame 3',
           checks: ['Shows the product clearly', 'Tags @pikora', 'Link sticker to your shop', 'Discloses the partnership'],
           suggestions: [

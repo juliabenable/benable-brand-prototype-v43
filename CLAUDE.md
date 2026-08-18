@@ -1,5 +1,62 @@
 # benable-brand-prototype-v43 — Campaign Pulse
 
+**v43.1 (Aug 17) — review direction C: AMINE'S MODAL, the new default.** The
+designer redid the review design (private repo `AmineBenjil/brand-portal-review-content`,
+his v6.1 Figma build) and Julia asked for it ported wholesale: the demo pill's
+REVIEW UI group is now **Modal | Chat | Sheet** (modal = default; deep-links
+`?rui=modal|chat|sheet`). `reviewModal.jsx` (`rvm-` CSS in
+`src/styles/reviewModal.css`) is a 1:1 JSX port of his ReviewModal + VideoPane +
+CelebrationModal — gradient stage, real 8s AI-UGC 9:16 videos (play/scrub/mute),
+creator pager ‹ n/N ›, drafts carousel (type labels, lavender selection ring,
+decision stamps, >4-drafts paging), toned caption (@mention blue / #hashtag
+purple), Katie's-team pre-check grey card, footer CTAs → decided status rails,
+slide-up request-changes sheet (chips FILL starter sentences, ⓘ one change
+round, Enter sends), 2.5s animated-check overlay, 1s skeletons, end-of-queue
+confetti celebration with the approved/changes tally. WIRED TO v43's DATA, not
+his: the queue = the table's `draftIn` rows, decisions land on the REVIEW
+asset objects (`a.state`, module-persisted) and notes on `a.notes`, so the
+tracker/chips/row-faces/partial states derive exactly as for Chat/Sheet.
+`pulseData.js` REVIEW assets gained `src`/`poster`/`capLines` (footage +
+posters + icons + gradient copied into `public/review/`; Inter self-hosted in
+src/styles — the modal is set in Inter per his Figma, the captured chrome stays
+National 2). EVERY ported class/keyframe is `rvm-` prefixed and his tokens are
+scoped under `.rvm` — the captured production CSS already owns `.panel-footer`
+/ `.review-stage`, unprefixed names collide. CampaignPulse's day-scrubber
+arrow keys yield while `.rvm` is open (the modal owns arrows for drafts).
+Deliberate deltas from his repo: his Dashboard/data stay behind (v43's table
+is the dashboard), his 5-draft Emery carousel demo has no v43 data twin (max
+2 drafts/creator), celebration counts derive from asset states.
+
+**v43.1 review round (Julia, Aug 17, same day):** login ReviewPopup REMOVED
+and the **SHEET direction REMOVED** — REVIEW UI is now **Modal | Chat**
+(`?rui=modal|chat`; the v42 sheet lives on in frozen v42). review.jsx is
+pruned to the shared MODEL layer only (QUICK_FIXES, who-reviews config,
+assetsOf/rowReviewState/reviewNeeds/reviewRowFace) — no components; the
+sheet/popup rv- CSS was pruned from pulse.css (the rv- classes reviewChat
+still wears were kept). The amber row CTAs are the only review entry. Decided rows keep NO cta (unchanged), but
+the row drawer's current stage-history step now carries a quiet
+**"See what you sent ↗"** tf-histlink (renders once ≥1 asset is decided;
+reopens the modal read-only w/ status rails + feedback). Design-QA pass ran
+the designer's repo LIVE side-by-side (scratchpad clone, computed-style diff):
+three port bugs found + fixed — (1) the scoped element resets (`.rvm button`
+etc.) out-ranked component classes and stripped the purple Approve fill, the
+sheet textarea border and the chip borders → resets now ride at ZERO
+specificity via `.rvm :where(button/img/textarea)`; (2) the captured
+production CSS's bare `p { color: rgb(122,64,64); font-size: 13px }`
+(production.css:4628) leaked into unclassed modal paragraphs (red captions) →
+`.rvm :where(p, span, li, …) { color: inherit; font-size: inherit }` guard;
+(3) `.rvm-chev`/`.rvm-chev-left` had no CSS (they live in his dashboard.css,
+never ported) → helpers added, prev arrow rotates again. Gradient verified
+IDENTICAL to his build (rel -323,-319 @ 1649×1226, natural 3114×2062,
+max-width none). Adversarial-review fixes: closes are blocked during the 2.5s
+confirm overlay (Esc/scrim would cancel the deferred commit — his original
+had the same bug), change notes land at COMMIT time (no orphan notes),
+re-entry seeks the first undecided draft, arrow disabled-guards use >=/<=
+with an index re-seat effect, `body:has(.rvm)` scroll lock. Modal font stays
+Inter (a National 2 Narrow toggle was built and REVERTED same hour — Julia).
+The stat row's "🚀 Campaign on schedule, up to 4 weeks faster than industry
+average" is v33 Tony copy (Jul 27), not from this round.
+
 **v43 (Aug 10) — review direction B: THE CONVERSATION.** Iterated from v42 right after its Amine handoff (v42 stays frozen on direction A, the sheet). v43 explores Julia's "Insense-style" idea: the review is a chat with the creator — her post arrives as a message (9:16 card + caption in a creator bubble), Katie's team's brief check is a system line, and **the brand's reply IS the decision**: the composer opens pre-written with a warm acceptance (per-asset `accept` in REVIEW data) — "Approve & send" ships it as-is (editing it just personalizes it); picking a suggestion chip (or "Ask for a change instead") flips the same message into her ONE change round, button becomes "Send to {name}". All decided rules hold (no reject · nudges only · straight to her · can't send empty · edits-not-reshoots via the Katie line). `reviewChat.jsx` (`rvc-` CSS); demo pill gains **REVIEW UI · Chat | Sheet** (chat = v43 default, deep-link `?rui=sheet` for direction A; module-persisted). Thread auto-scrolls; decided posts show the sent purple bubble + status line; per-creator threads chain via "Next: Jade's tiktok →".
 
 **v42 (Aug 10) — fresh iteration base, snapshot of v41.** v41 was the Nisarg handoff pack (docs/HANDOFF.md + spec v2 + v37 migration notes) and stays frozen at its own URL — the docs/ files intentionally keep their v41 links. New work goes here.

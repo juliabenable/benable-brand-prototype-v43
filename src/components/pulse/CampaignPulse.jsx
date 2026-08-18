@@ -27,8 +27,10 @@ const F_OPTS = { edu: 'b', stage: 'dots', act: 'calm', late: 'quiet', icons: 'of
    switchers are gone from the pill (deep-links still accept overrides for the
    states gallery); the exploration lives in v39. */
 let persistedToggles = { head: 'grey', ship: 'head', table: 'k', ring: 'solid' };
-/* review direction (v43): 'chat' = the conversation (default) · 'sheet' = v42's sheet */
-let persistedRui = 'chat';
+/* review direction (v43): 'modal' = Amine's review-content modal (default) ·
+   'chat' = the conversation. The v42 sheet direction was removed (Julia,
+   Aug 17) — it lives on in frozen v42. */
+let persistedRui = 'modal';
 /* Katie's per-brand admin switch: declined invites stay hidden by default */
 let persistedDeclined = false;
 
@@ -38,7 +40,7 @@ let persistedDeclined = false;
 const Q = new URLSearchParams(window.location.search);
 const EMBED = Q.has('embed');
 if (Q.get('mode') === 'local') persistedMode = 'local';
-if (Q.get('rui') === 'sheet') persistedRui = 'sheet';
+if (['modal', 'chat'].includes(Q.get('rui'))) persistedRui = Q.get('rui');
 if (Q.has('declined')) persistedDeclined = Q.get('declined') !== '0';
 for (const k of ['table', 'head', 'ship', 'ring']) if (Q.has(k)) persistedToggles = { ...persistedToggles, [k]: Q.get(k) };
 if (Q.has('day')) {
@@ -141,6 +143,8 @@ export default function CampaignPulse() {
   useEffect(() => {
     const onKey = (e) => {
       if (e.target.closest?.('input, textarea')) return;
+      /* the review modal owns the arrow keys while open (draft flipping) */
+      if (document.querySelector('.rvm')) return;
       if (e.key === 'ArrowRight') setIdx((i) => Math.min(i + 1, days.length - 1));
       if (e.key === 'ArrowLeft') setIdx((i) => Math.max(i - 1, 0));
     };
@@ -188,11 +192,11 @@ export default function CampaignPulse() {
         </button>
         <span className="cp-mode-sep" aria-hidden />
         <span className="cp-scrub-tag">REVIEW UI</span>
+        <button type="button" className={rui === 'modal' ? 'cp-scrub-day cp-scrub-day--active' : 'cp-scrub-day'} onClick={() => setRui('modal')}>
+          Modal
+        </button>
         <button type="button" className={rui === 'chat' ? 'cp-scrub-day cp-scrub-day--active' : 'cp-scrub-day'} onClick={() => setRui('chat')}>
           Chat
-        </button>
-        <button type="button" className={rui === 'sheet' ? 'cp-scrub-day cp-scrub-day--active' : 'cp-scrub-day'} onClick={() => setRui('sheet')}>
-          Sheet
         </button>
       </div>}
 

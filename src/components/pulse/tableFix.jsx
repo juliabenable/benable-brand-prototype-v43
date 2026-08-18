@@ -1,8 +1,9 @@
-import { useEffect, useReducer, useState } from 'react';
+import { useReducer, useState } from 'react';
 import { crewFor, PHOTOS, TIMELINES, CASTING_TIMELINE, STAGE_LABELS, SPOTS, LOCAL, NEXT_HINTS, DECLINED } from './pulseData.js';
 import { stageOf, stagesFor, AM_FILTER_LABEL, ActionModal } from './amine.jsx';
-import { ReviewSheet, ReviewPopup, reviewPopupDue, dismissReviewPopup, isReviewRow, reviewRowFace, reviewNeeds } from './review.jsx';
+import { assetsOf, isReviewRow, reviewRowFace, reviewNeeds } from './review.jsx';
 import { ChatReview } from './reviewChat.jsx';
+import { ReviewModal } from './reviewModal.jsx';
 import LiveStatus from './LiveStatus.jsx';
 
 /* F · Table fixes — the creators-table study's picks, worn together
@@ -62,14 +63,10 @@ export default function FixedTable({ scene, rows, filter, onFilter, openCrew, to
   const stages = stagesFor(scene.mode);
   const [modal, setModal] = useState(null);
   const [sheetDone, setSheetDone] = useState(false);
-  /* login-moment pop-up when drafts wait on the brand (rematch-pattern twin,
-     content-review study @4218) — once per session, never in the gallery */
-  const [reviewPopup, setReviewPopup] = useState(false);
   /* declined-invites fold (Katie's switch) — collapsed by default */
   const [declOpen, setDeclOpen] = useState(false);
-  useEffect(() => {
-    if (reviewPopupDue(scene, crewAll)) setReviewPopup(true);
-  }, [scene.day, scene.mode, scene.review]); // eslint-disable-line react-hooks/exhaustive-deps
+  /* the login-moment review pop-up was removed (Julia, Aug 17) — the amber
+     row CTAs are the only entry into the review */
 
   const inviting = crewAll.some((c) => !c.mystery && c.stage === 0 && !c.found);
   const shipDay = crewAll.some((c) => c.ship);
@@ -368,7 +365,22 @@ export default function FixedTable({ scene, rows, filter, onFilter, openCrew, to
                           See the live {(c.posts || 1) > 1 ? 'posts' : 'post'} <span aria-hidden>↗</span>
                         </a>
                       )}
-                      {state === 'now' && <div className="cp-hist-live"><LiveStatus status={face ? { type: 'static', phrases: [face.status] } : c.status} /></div>}
+                      {state === 'now' && (
+                        <div className="cp-hist-live">
+                          <LiveStatus status={face ? { type: 'static', phrases: [face.status] } : c.status} />
+                          {/* decided rows drop the row CTA (Julia, Aug 17) — the
+                              drawer keeps a quiet door back into what was sent */}
+                          {face && assetsOf(c, scene.mode).some((a) => a.state) && (
+                            <a
+                              className="tf-histlink tf-sentlink"
+                              href="#"
+                              onClick={(e) => { e.preventDefault(); e.stopPropagation(); setModal({ kind: 'review', name: c.name }); }}
+                            >
+                              See what you sent <span aria-hidden>↗</span>
+                            </a>
+                          )}
+                        </div>
+                      )}
                     </div>
                   </div>
                 );
@@ -547,18 +559,10 @@ export default function FixedTable({ scene, rows, filter, onFilter, openCrew, to
       {modal?.kind === 'review' ? (
         scene.rui === 'chat'
           ? <ChatReview scene={scene} rows={crewAll} initial={modal.name} onClose={() => setModal(null)} onDecide={() => { bump(); onReviewChange?.(); }} />
-          : <ReviewSheet scene={scene} rows={crewAll} initial={modal.name} onClose={() => setModal(null)} onDecide={() => { bump(); onReviewChange?.(); }} />
+          : <ReviewModal scene={scene} rows={crewAll} initial={modal.name} onClose={() => setModal(null)} onDecide={() => { bump(); onReviewChange?.(); }} />
       ) : modal ? (
         <ActionModal act={modal} onClose={() => setModal(null)} />
       ) : null}
-      {reviewPopup && (
-        <ReviewPopup
-          scene={scene}
-          rows={crewAll}
-          onReview={(name) => { dismissReviewPopup(); setReviewPopup(false); setModal({ kind: 'review', name }); }}
-          onLater={() => { dismissReviewPopup(); setReviewPopup(false); }}
-        />
-      )}
     </section>
   );
 }

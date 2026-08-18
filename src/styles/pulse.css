@@ -386,6 +386,8 @@
 /* stage-history live link — subtle underline, only once the post exists */
 .tf-histlink { display: inline-flex; align-items: center; gap: 3px; margin-top: 4px; font-size: 12px; font-weight: 500; color: #555; text-decoration: underline; text-underline-offset: 2px; }
 .tf-histlink:hover { color: #1c1c1c; }
+/* the sent-review door rides inline after the live status line — give it air */
+.tf-sentlink { margin-left: 10px; }
 /* row drawer — smooth height transition both ways, no layout snap */
 .tf-drawer { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.32s cubic-bezier(0.22, 1, 0.36, 1); }
 .tf-drawer--open { grid-template-rows: 1fr; }
@@ -432,7 +434,6 @@
    Decided: nudges only · feedback straight to creator · no reject button ·
    one change round · edits-first (reshoots are Katie's team's conversation).
    The sheet reuses the am-veil; green = approve, amber only on the ask. */
-.rv-sheet { width: 960px; max-width: calc(100vw - 40px); padding: 0; overflow: hidden; }
 .rv-head { display: flex; align-items: center; gap: 12px; padding: 14px 18px; border-bottom: 1px solid #ececf1; }
 .rv-ava { width: 34px; height: 34px; flex: none; }
 .rv-head-names { min-width: 0; flex: 1; }
@@ -443,44 +444,14 @@
 .rv-x:hover { background: #f3f4f6; color: #171717; }
 
 /* one constant frame — steps swap the right column only, never the size */
-.rv-body { display: grid; grid-template-columns: 1fr 1.1fr; min-height: 520px; }
-.rv-media { padding: 20px 24px; border-right: 1px solid #ececf1; }
 /* social posts are 9:16 — the player keeps the real ratio */
-.rv-player { position: relative; width: 226px; aspect-ratio: 9 / 16; margin: 0 auto; border-radius: 16px; overflow: hidden; background: #1b1d21; }
-.rv-player img { width: 100%; height: 100%; object-fit: cover; opacity: 0.92; display: block; }
-.rv-play { position: absolute; inset: 0; display: grid; place-items: center; font-size: 26px; color: #fff; text-shadow: 0 2px 12px rgba(0,0,0,0.45); }
-.rv-len { position: absolute; right: 8px; bottom: 8px; background: rgba(20,22,26,0.78); color: #fff; font-size: 10.5px; font-weight: 600; border-radius: 999px; padding: 2px 8px; }
-.rv-capbox { margin-top: 14px; }
-.rv-caption { margin: 0; font-size: 12.5px; line-height: 1.55; color: #4c5058; }
 
 /* several posts from one creator — chip switcher with per-post state dots */
-.rv-strip { display: flex; flex-wrap: wrap; gap: 6px; padding: 12px 20px 0; }
-.rv-strip-chip { display: inline-flex; align-items: center; gap: 7px; border: 1px solid #e4e6ea; border-radius: 999px; padding: 5px 12px; background: #fff; font-family: inherit; font-size: 12px; font-weight: 600; color: #5c6066; cursor: pointer; }
-.rv-strip-chip--on { border-color: #1b1d21; color: #1b1d21; }
-.rv-strip-dot { width: 7px; height: 7px; border-radius: 50%; background: #f0a32e; }
-.rv-strip-dot--ok { background: #17864f; }
-.rv-strip-dot--chg { background: #b9bec4; }
 
-.rv-side { padding: 20px 24px; display: flex; flex-direction: column; }
-.rv-side-label { margin: 0 0 8px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #9aa0a6; }
-.rv-ask-head { display: flex; align-items: baseline; justify-content: space-between; margin: 0 0 12px; }
-.rv-ask { margin: 0; font-size: 15px; font-weight: 700; color: #171717; }
 /* the pre-check receipts live on a quiet grey surface that owns the column
    between head and decisions — grey = zone, white = content (Julia, Aug 10) */
-.rv-checkpanel { background: #f8f9fa; border-radius: 12px; padding: 16px 18px 13px; flex: 1; display: flex; flex-direction: column; }
-.rv-checks { list-style: none; margin: 2px 0 0; padding: 0; }
-.rv-checks li { display: flex; align-items: center; gap: 10px; padding: 6px 0; font-size: 12.5px; color: #3c4046; }
-.rv-checks li::before { content: '✓'; flex: none; width: 19px; height: 19px; border-radius: 50%; background: #e9f6ee; color: #2e9e6b; font-size: 10.5px; font-weight: 700; display: grid; place-items: center; }
-.rv-checkfoot { margin: auto 0 0; padding-top: 12px; border-top: 1px solid #eef0f2; font-size: 11px; line-height: 1.5; color: #9aa0a6; }
 /* decisions anchor bottom-right, dialog-style; primaries wear the product
    purple (Julia, Aug 10) */
-.rv-verbfoot { margin-top: auto; padding-top: 16px; }
-.rv-verbs { display: flex; justify-content: flex-end; gap: 8px; }
-.rv-approve { border: none; border-radius: 10px; padding: 11px 18px; background: #7a5cfa; color: #fff; font-family: inherit; font-size: 13.5px; font-weight: 600; cursor: pointer; transition: background 0.15s ease; }
-.rv-approve:hover { background: #5e41d6; }
-.rv-change { border: 1px solid #e4e6ea; border-radius: 10px; padding: 10px 16px; background: #fff; color: #1b1d21; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; }
-.rv-change:hover { border-color: #c9c9c9; }
-.rv-foot { margin: 0 0 10px; font-size: 11.5px; line-height: 1.5; color: #8a8f98; }
 
 .rv-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 12px; }
 .rv-chip { border: 1px solid #e4e6ea; border-radius: 999px; padding: 5px 12px; background: #fff; font-family: inherit; font-size: 12px; color: #3c4046; cursor: pointer; }
@@ -489,35 +460,11 @@
 .rv-text:focus { outline: 2px solid #7a5cfa; outline-offset: -1px; }
 .rv-send { border: none; border-radius: 10px; background: #7a5cfa; color: #fff; font-family: inherit; font-weight: 600; cursor: pointer; }
 .rv-send:hover { background: #5e41d6; }
-.rv-send--full { width: 100%; margin-top: 12px; padding: 12px; font-size: 13.5px; }
 .rv-send:disabled { opacity: 0.35; cursor: default; }
 .rv-send:disabled:hover { background: #7a5cfa; }
-.rv-sendmeta { text-align: center; margin: 10px 0 0; font-size: 11.5px; color: #9aa0a6; }
-.rv-edu { margin-top: 18px; padding-top: 14px; border-top: 1px solid #f0f1f3; font-size: 11.5px; line-height: 1.55; color: #8a8f98; }
-.rv-edu span { display: block; }
-.rv-edu b { color: #5c6066; }
 .rv-katie { border: none; background: none; padding: 0; margin-top: 6px; font-family: inherit; font-size: 11.5px; font-weight: 600; color: #5c6066; cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }
 .rv-katie:hover { color: #171717; }
-.rv-back { border: none; background: none; padding: 0; font-family: inherit; font-size: 12px; color: #9aa0a6; cursor: pointer; }
-.rv-back:hover { color: #171717; }
 
-.rv-done { display: flex; flex-direction: column; flex: 1; }
-.rv-band { display: flex; gap: 12px; align-items: flex-start; border-radius: 12px; padding: 14px 16px; }
-.rv-band span { font-size: 20px; line-height: 1; }
-.rv-band b { display: block; font-size: 13.5px; }
-.rv-band p { margin: 2px 0 0; font-size: 12px; line-height: 1.5; }
-.rv-band--green { background: #f2f9f5; border: 1px solid #dfeee6; }
-.rv-band--green b { color: #17603c; }
-.rv-band--green p { color: #4c7a5f; }
-.rv-band--quiet { background: #fafbfc; border: 1px solid #ececf1; }
-.rv-band--quiet b { color: #1b1d21; }
-.rv-band--quiet p { color: #6b7075; }
-.rv-noterow { display: flex; gap: 8px; align-items: center; margin-top: 12px; }
-.rv-note { flex: 1; border: 1px solid #e2e4ea; border-radius: 10px; padding: 9px 12px; font-family: inherit; font-size: 12.5px; color: #171717; }
-.rv-note:focus { outline: 2px solid #7a5cfa; outline-offset: -1px; }
-.rv-notesend { border: none; background: none; font-family: inherit; font-size: 12.5px; font-weight: 600; color: #1b1d21; cursor: pointer; }
-.rv-notesent { margin: 12px 2px 0; font-size: 12.5px; color: #17603c; }
-.rv-donefoot { display: flex; justify-content: flex-end; margin-top: auto; padding-top: 16px; }
 .rv-next { border: none; border-radius: 10px; padding: 9px 16px; background: #7a5cfa; color: #fff; font-family: inherit; font-size: 13.5px; font-weight: 600; cursor: pointer; }
 .rv-next:hover { background: #5e41d6; }
 
@@ -525,26 +472,9 @@
    the count in the CTA, and a quiet "later" — the tease does the selling */
 /* the waiting posts as a fanned PILE — front card upright with the chip, the
    rest peek out behind; actions live at the bottom, never mid-float (Aug 10) */
-.rv-pop { width: 580px; min-height: 540px; text-align: center; padding: 34px 32px 26px; display: flex; flex-direction: column; }
-.rv-pop-pile { position: relative; height: 240px; margin: 2px 0 6px; }
-.rv-pop-still { position: absolute; left: 50%; top: 0; width: 124px; aspect-ratio: 9 / 16; border-radius: 16px; overflow: hidden; box-shadow: 0 12px 30px rgba(20, 18, 26, 0.22); }
-.rv-pop-still:nth-child(1) { transform: translateX(-50%) rotate(-2deg); z-index: 3; }
-.rv-pop-still:nth-child(2) { transform: translateX(-22%) translateY(7px) rotate(7deg); z-index: 2; }
-.rv-pop-still:nth-child(3) { transform: translateX(-78%) translateY(9px) rotate(-9deg); z-index: 1; }
-.rv-pop-still:not(:nth-child(1)) .rv-pop-kind { display: none; }
-.rv-pop-still img { width: 100%; height: 100%; object-fit: cover; filter: blur(6px); transform: scale(1.12); }
-.rv-pop-kind { position: absolute; left: 50%; bottom: 10px; transform: translateX(-50%); background: rgba(255,255,255,0.92); color: #1b1d21; font-size: 10.5px; font-weight: 700; border-radius: 999px; padding: 3px 10px; white-space: nowrap; }
-.rv-pop-title { margin-top: 18px; font-size: 19px; line-height: 1.3; text-wrap: balance; }
-.rv-pop-sub { max-width: 44ch; margin: 8px auto 0; font-size: 13.5px; }
-.rv-pop-foot { margin-top: auto; padding-top: 20px; }
-.rv-pop-go { width: 100%; max-width: 360px; margin: 0 auto; display: block; height: 46px; border-radius: 12px; font-size: 14.5px; }
-.rv-pop-later { display: block; margin: 12px auto 0; border: none; background: none; padding: 4px; font-family: inherit; font-size: 12.5px; color: #8a8f98; cursor: pointer; }
-.rv-pop-later:hover { color: #171717; }
 /* rv-go inherits am-modal-go's product purple */
 
 @media (max-width: 760px) {
-  .rv-body { grid-template-columns: 1fr; }
-  .rv-media { border-right: none; border-bottom: 1px solid #ececf1; }
 }
 
 /* ---- rvc- · review direction B: the conversation (v43, Aug 10) ----------
