@@ -10,8 +10,8 @@ import '../../styles/reviewModal.css';
    draftIn rows, decisions land on the REVIEW asset objects (asset.state,
    module-persisted) so the tracker, chips and row faces derive exactly as
    they do for the Chat/Sheet directions. Change-request notes stack on
-   asset.notes. All decided rules hold: no reject · nudges only · one
-   change round · straight to her · can't send empty.
+   asset.notes. All decided rules hold: no reject · issue notes go to the
+   Benable team · can't send empty.
 
    Layout: left stage (gradient + 9:16 player + draft arrows) · right panel
    (creator pager ‹ n/N ›, drafts carousel with type labels + lavender
@@ -346,10 +346,6 @@ export function ReviewModal({ scene, rows, initial, onClose, onDecide }) {
 
   const decided = clip.state; // 'approved' | 'changes' | undefined — locked once set
   const name = creator.name;
-  const refilmTail = mode === 'local'
-    ? 'Creators would need another visit.'
-    : 'Creators would need to re-film from scratch.';
-
   const goToCreator = (idx) => { setCreatorIdx(idx); setClipIdx(0); };
 
   /* decisions land on the asset (module-persisted) and the whole page
@@ -578,12 +574,12 @@ export function ReviewModal({ scene, rows, initial, onClose, onDecide }) {
                 <p className="rvm-footer-status rvm-footer-status-approved"><strong>🎉 </strong>Approved</p>
               ) : decided === 'changes' ? (
                 <p className="rvm-footer-status rvm-footer-status-sent">
-                  <strong>Request sent </strong>to {name} — we’ll email you when the new draft is ready.
+                  <strong>Issue flagged </strong>for our team — we’ll review and keep you posted.
                 </p>
               ) : (
                 <div className="rvm-panel-footer-cta">
                   <button type="button" className="rvm-footer-changes" disabled={!!confirming} onClick={() => setChangesOpen(true)}>
-                    Request changes
+                    Flag an issue
                   </button>
                   <button type="button" className="rvm-footer-approve" disabled={!!confirming} onClick={() => confirmDecision('approved')}>
                     Approve
@@ -599,12 +595,12 @@ export function ReviewModal({ scene, rows, initial, onClose, onDecide }) {
                   <path className="rvm-approve-check-mark" d="M20 33.5 28.5 42 44 24.5" stroke="#3caa70" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
                 <p className="rvm-approve-overlay-title">
-                  {confirming === 'approved' ? `Approved — ${name} will post it within days.` : `Sent to ${name}.`}
+                  {confirming === 'approved' ? `Approved — ${name} will post it within days.` : 'Sent to our team.'}
                 </p>
                 <p className="rvm-approve-overlay-sub">
                   {confirming === 'approved'
                     ? 'We’ll tell her the good news and track the post for you.'
-                    : 'She’ll rework this one once and it’ll pop back here — we’ll keep you posted.'}
+                    : 'We’ll review it and work out the best solution with the creator directly.'}
                 </p>
               </div>
             )}
@@ -619,15 +615,14 @@ export function ReviewModal({ scene, rows, initial, onClose, onDecide }) {
                 </button>
                 <div className="rvm-changes-body">
                   <span className="rvm-changes-icon">🖊️</span>
-                  <p className="rvm-changes-title">What should change?</p>
+                  <p className="rvm-changes-title">Sorry about that, let's make it right</p>
                   <p className="rvm-changes-sub">
-                    Small tweaks are more welcomed by creators. Need something <strong>re-filmed?</strong> That’s
-                    a bigger ask<strong>.</strong> {refilmTail}
+                    Tell us what didn't match your brief or instructions, with as much detail as you can. Your note goes to the Benable team, not to the creator. We'll review and work out the best solution with the creator directly.
                   </p>
                   <textarea
                     ref={changesRef}
                     className="rvm-changes-textarea"
-                    placeholder="Hello world"
+                    placeholder="Describe the issue, the more detail the better"
                     value={changesText}
                     autoFocus
                     onChange={(e) => setChangesText(e.target.value)}
@@ -640,12 +635,8 @@ export function ReviewModal({ scene, rows, initial, onClose, onDecide }) {
                       stands alone; clip.suggestions still feed the Chat UI */}
                 </div>
                 <div className="rvm-changes-footer">
-                  <p className="rvm-changes-meta">
-                    <img src={A('assets/icons/info-16.svg')} alt="" className="rvm-changes-meta-icon" />
-                    One change round included
-                  </p>
                   <button type="button" className="rvm-changes-send" disabled={!changesText.trim()} onClick={submitChanges}>
-                    Send to {name}
+                    Send to our team
                   </button>
                 </div>
               </div>
